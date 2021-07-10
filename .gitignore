@@ -70,3 +70,6 @@ yarn-error.log
 
 # VS Code Workspace 
 *.code-workspace
+
+# Sketch Files
+*.sketch
