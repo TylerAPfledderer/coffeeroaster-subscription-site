@@ -1,5 +1,13 @@
 import { extendTheme } from "@chakra-ui/react"
-const theme = {
+
+export default extendTheme({
+  colors: {
+    brand: {
+      500: "#0E8784",
+      600: "#1ba29e",
+      700: "#0c7471",
+    },
+  },
   fonts: {
     heading:
       "Fraunces, 'Palatino Linotype', 'Palatino LT STD', 'Book Antiqua', Georgia, serif",
@@ -15,5 +23,26 @@ const theme = {
       opacity: "0",
     },
   },
-}
-export default extendTheme(theme)
+  components: {
+    Heading: {
+      sizes: {
+        "4xl": {
+          fontSize: "clamp(2.488rem, 16.8vw - 1.8rem, 4.209rem)",
+          lineHeight: "clamp(3rem, 29.3vw - 4.5rem, 6rem)",
+        },
+        "3xl": {
+          fontSize: "clamp(2.074rem, 20.4vw - 2.7rem, 3.157rem)",
+          lineHeight: "clamp(3rem, 28.2vw - 3.6rem, 4.5rem)",
+        },
+        "2xl": {
+          fontSize: "clamp(1.728rem, 12.1vw - 1.1rem, 2.369rem)",
+          lineHeight: "3rem",
+        },
+        xl: {
+          fontSize: "clamp(1.44rem, 6.3vw + 0rem, 1.777rem)",
+          lineHeight: "3rem",
+        },
+      },
+    },
+  },
+})
