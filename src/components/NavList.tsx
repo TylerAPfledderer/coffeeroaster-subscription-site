@@ -20,9 +20,9 @@ const NavListLink = ({ name, path }: NavLinkProps) => {
 const NavList = (props: ComponentProps<typeof Container>) => {
   return (
     <Stack as={List} {...props}>
-      <NavListLink name="Home" path="/#" />
-      <NavListLink name="About Us" path="/#" />
-      <NavListLink name="Create Your Plan" path="/#" />
+      <NavListLink name="Home" path="/" />
+      <NavListLink name="About Us" path="/about" />
+      <NavListLink name="Create Your Plan" path="/subscribe" />
     </Stack>
   )
 }
