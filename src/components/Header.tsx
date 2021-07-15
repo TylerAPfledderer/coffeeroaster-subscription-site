@@ -4,27 +4,20 @@ import {
   Button,
   Container,
   Flex,
-  Heading,
   Image,
-  Link,
-  Text,
   useMediaQuery,
-  VStack,
 } from "@chakra-ui/react"
 import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons"
 import { useState } from "react"
-import { Link as GatsbyLink } from "gatsby"
-import CoffeePressMobileImg from "../images/home/hero/coffeepress-mobile.jpg"
-import CoffeePressTabletImg from "../images/home/hero/coffeepress-tablet.jpg"
-import CoffeePressDesktopImg from "../images/home/hero/coffeepress-desktop.jpg"
 import NavList from "./NavList"
+import Hero from "./Hero"
+import { LocationProps } from "../types/interfaces"
+import { HeroDataProps } from "./layout"
 
 // Define props here to pass typping in parent component
-interface HeaderProps {
-  pagePath: String
-}
+interface HeaderProps extends LocationProps, HeroDataProps {}
 
-const Header: React.FC<HeaderProps> = ({ pagePath }) => {
+const Header: React.FC<HeaderProps> = ({ pagePath, heroData }) => {
   // Check re-hydration
   const [isMounted, setMounted] = useState(false)
   // Toggling Nav Menu (on the small screen)
@@ -32,16 +25,13 @@ const Header: React.FC<HeaderProps> = ({ pagePath }) => {
 
   const [isLessThan768] = useMediaQuery("(max-width: 767px)")
 
-  // Initial check for small screen size and the nav menu closed
-  const smallScreenMenuCheck = isLessThan768 && !isMenuOpen
-
   useEffect(() => {
     // Component has re-hydrated
     setMounted(true)
   }, [])
 
   // Set the check for small screen with nav menu closed on mount
-  const isSmallScreenMenuClosed = isMounted && smallScreenMenuCheck
+  const isSmallScreenMenuClosed = isMounted && isLessThan768 && !isMenuOpen
 
   return (
     <Box
@@ -76,7 +66,7 @@ const Header: React.FC<HeaderProps> = ({ pagePath }) => {
           overflow="hidden"
           top="104px"
           left="0"
-          bgGradient="linear(white 25%, transparent)"
+          bgGradient="linear(white 50%, transparent)"
           transition="max-height .3s, opacity .5s"
           zIndex="overlay"
         >
@@ -90,42 +80,7 @@ const Header: React.FC<HeaderProps> = ({ pagePath }) => {
           />
         </Container>
       </Flex>
-      <Flex
-        direction="column"
-        alignItems={{ base: "center", md: "flex-start" }}
-        bgImage={{
-          base: `url(${CoffeePressMobileImg})`,
-          md: `url(${CoffeePressTabletImg})`,
-          xl: `url(${CoffeePressDesktopImg})`,
-        }}
-        bgPos="center"
-        bgSize="cover"
-        bgRepeat="no-repeat"
-        color="white"
-        textAlign={{ base: "center", md: "left" }}
-        padding="100px 24px"
-        borderRadius="10px"
-      >
-        <Heading as="h1" size="4xl" mb="6" maxWidth="492px">
-          Great coffee made simple.
-        </Heading>
-        <Text maxWidth="445px">
-          Start your mornings with the world’s best coffees. Try our expertly
-          curated artisan coffees from our best roasters delivered directly to
-          your door, at your schedule.
-        </Text>
-        {pagePath === "/" && (
-          <Button
-            as={GatsbyLink}
-            to="/subscribe"
-            size="lg"
-            mt="48px"
-            colorScheme="brand"
-          >
-            Create your plan
-          </Button>
-        )}
-      </Flex>
+      <Hero pagePath={pagePath} heroData={heroData} />
     </Box>
   )
 }
