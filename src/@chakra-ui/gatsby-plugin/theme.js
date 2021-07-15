@@ -13,6 +13,7 @@ export default extendTheme({
     "accent-secondary": {
       500: "#F4F1EB",
     },
+    gray: { 500: "#83888f" },
   },
   fonts: {
     heading:
@@ -48,6 +49,9 @@ export default extendTheme({
           fontSize: "clamp(1.44rem, 6.3vw + 0rem, 1.777rem)",
           lineHeight: "3rem",
         },
+      },
+      defaultProps: {
+        size: "3xl",
       },
     },
   },
