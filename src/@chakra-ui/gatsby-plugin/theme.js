@@ -4,8 +4,14 @@ export default extendTheme({
   colors: {
     brand: {
       500: "#0E8784",
-      600: "#1ba29e",
+      600: "#66D2CF",
       700: "#0c7471",
+    },
+    "accent-primary": {
+      500: "fdd6ba",
+    },
+    "accent-secondary": {
+      500: "#F4F1EB",
     },
   },
   fonts: {
