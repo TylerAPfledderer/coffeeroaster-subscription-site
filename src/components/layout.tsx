@@ -1,5 +1,6 @@
 // TODO: Check this StackOverflow answer on setting up context for the pages: https://stackoverflow.com/a/62062145
 
+import { chakra } from "@chakra-ui/react"
 import React from "react"
 import Header from "./Header"
 
@@ -20,7 +21,7 @@ const Layout: React.FC<LayoutProps> = ({ children, location, heroData }) => {
   return (
     <div>
       <Header pagePath={location} heroData={heroData} />
-      <main>{children}</main>
+      <chakra.main marginTop="32">{children}</chakra.main>
       <footer>This is a footer</footer>
     </div>
   )
