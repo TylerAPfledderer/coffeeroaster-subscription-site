@@ -22,6 +22,7 @@ const Hero: React.FC<HeroProps> = ({
       textAlign={{ base: "center", md: "left" }}
       padding="100px 24px"
       borderRadius="10px"
+      marginTop="72px"
     >
       <Heading as="h1" size="4xl" mb="6" maxWidth="492px">
         {title}
