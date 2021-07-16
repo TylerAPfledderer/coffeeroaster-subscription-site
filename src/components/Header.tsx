@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 import {
   Box,
   Button,
@@ -13,25 +13,24 @@ import NavList from "./NavList"
 import Hero from "./Hero"
 import { LocationProps } from "../types/interfaces"
 import { HeroDataProps } from "./layout"
+import { graphql, useStaticQuery } from "gatsby"
 
 // Define props here to pass typping in parent component
 interface HeaderProps extends LocationProps, HeroDataProps {}
 
 const Header: React.FC<HeaderProps> = ({ pagePath, heroData }) => {
-  // Check re-hydration
-  const [isMounted, setMounted] = useState(false)
   // Toggling Nav Menu (on the small screen)
   const [isMenuOpen, setMenuToggle] = useState(false)
 
-  const [isLessThan768] = useMediaQuery("(max-width: 767px)")
+  const [isGreaterThan768] = useMediaQuery("(min-width: 768px)")
 
-  useEffect(() => {
-    // Component has re-hydrated
-    setMounted(true)
-  }, [])
-
-  // Set the check for small screen with nav menu closed on mount
-  const isSmallScreenMenuClosed = isMounted && isLessThan768 && !isMenuOpen
+  const logo = useStaticQuery(graphql`
+    query QueryLogo {
+      file(relativePath: { eq: "logo.svg" }) {
+        publicURL
+      }
+    }
+  `)
 
   return (
     <Box
@@ -40,9 +39,21 @@ const Header: React.FC<HeaderProps> = ({ pagePath, heroData }) => {
       mx="auto"
       px={{ base: "16px", md: "42px", lg: "80px" }}
     >
-      <Flex justifyContent="space-between" alignItems="center" py="32px">
+      {/* The proverbial "Navbar" */}
+      <Flex
+        justifyContent="space-between"
+        alignItems="center"
+        px="inherit"
+        py="4"
+        bg="white"
+        width="full"
+        position="fixed"
+        top="0"
+        left="0"
+        zIndex="sticky"
+      >
         <Box w={{ base: "162px", md: "auto" }}>
-          <Image src="../logo.svg" alt="" mb="0" />
+          <Image src={logo.file.publicURL} alt="" mb="0" />
         </Box>
         <Button
           bg="transparent"
@@ -53,7 +64,6 @@ const Header: React.FC<HeaderProps> = ({ pagePath, heroData }) => {
         </Button>
         <Container
           as="nav"
-          layerStyle={isSmallScreenMenuClosed ? "navClosed" : "navOpened"}
           position={{ base: "fixed", md: "static" }}
           display="flex"
           justifyContent={{ base: "center", md: "revert" }}
@@ -64,11 +74,14 @@ const Header: React.FC<HeaderProps> = ({ pagePath, heroData }) => {
           maxW="full"
           height={{ base: "100vh", md: "auto" }}
           overflow="hidden"
-          top="104px"
+          top="72px"
           left="0"
           bgGradient="linear(white 50%, transparent)"
           transition="max-height .3s, opacity .5s"
           zIndex="overlay"
+          layerStyle={
+            isGreaterThan768 || isMenuOpen ? "navOpened" : "navClosed"
+          }
         >
           <NavList
             listStyleType="none"
