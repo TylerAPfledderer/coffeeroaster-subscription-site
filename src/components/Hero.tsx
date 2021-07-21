@@ -12,6 +12,7 @@ const Hero: React.FC<HeroProps> = ({
 }) => {
   return (
     <Flex
+      as="section"
       direction="column"
       alignItems={{ base: "center", md: "flex-start" }}
       bgImage={imageSet}
@@ -19,7 +20,7 @@ const Hero: React.FC<HeroProps> = ({
       bgSize="cover"
       bgRepeat="no-repeat"
       color="white"
-      textAlign={{ base: "center", md: "left" }}
+      textAlign={{ md: "left" }}
       padding="100px 24px"
       borderRadius="10px"
       marginTop="72px"
