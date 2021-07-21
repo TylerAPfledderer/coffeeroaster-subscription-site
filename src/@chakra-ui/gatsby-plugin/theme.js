@@ -14,6 +14,7 @@ export default extendTheme({
       500: "#F4F1EB",
     },
     gray: { 500: "#83888f" },
+    darkGray: { 500: "#333d4b" },
   },
   fonts: {
     heading:
