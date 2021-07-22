@@ -1,6 +1,6 @@
 // TODO: Check this StackOverflow answer on setting up context for the pages: https://stackoverflow.com/a/62062145
 
-import { chakra } from "@chakra-ui/react"
+import { Box } from "@chakra-ui/react"
 import React from "react"
 import Header from "./Header"
 
@@ -19,11 +19,13 @@ interface LayoutProps extends HeroDataProps {
 
 const Layout: React.FC<LayoutProps> = ({ children, location, heroData }) => {
   return (
-    <div>
+    <Box textAlign="center">
       <Header pagePath={location} heroData={heroData} />
-      <chakra.main marginTop="32">{children}</chakra.main>
+      <Box as="main" marginTop="32">
+        {children}
+      </Box>
       <footer>This is a footer</footer>
-    </div>
+    </Box>
   )
 }
 
