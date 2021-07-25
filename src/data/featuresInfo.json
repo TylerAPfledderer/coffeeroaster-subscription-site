@@ -1,0 +1,17 @@
+[
+  {
+    "icon": "icon-coffee-bean",
+    "title": "Best quality",
+    "description": "Discover an endles variety of the world's best artisan coffee from each of our roasters"
+  },
+  {
+    "icon": "icon-gift",
+    "title": "Exclusive benefits",
+    "description": "Special offers and swag when you subscribe, including 30% off your first shipment."
+  },
+  {
+    "icon": "icon-truck",
+    "title": "Free shipping",
+    "description": "We cover the cost and coffee is delivered fast. Peak freshness: guaranteed."
+  }
+]
