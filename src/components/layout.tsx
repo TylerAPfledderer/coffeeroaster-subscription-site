@@ -21,7 +21,7 @@ const Layout: React.FC<LayoutProps> = ({ children, location, heroData }) => {
   return (
     <Box textAlign="center">
       <Header pagePath={location} heroData={heroData} />
-      <Box as="main" marginTop="32">
+      <Box as="main" paddingX="6">
         {children}
       </Box>
       <footer>This is a footer</footer>
