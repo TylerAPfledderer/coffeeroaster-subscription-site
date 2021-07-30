@@ -113,6 +113,7 @@ const IndexPage = ({ path }: PageProps) => {
         </Heading>
         <Stack as={List} spacing="56px">
           {collectionInfo.map(({ id, image, title, description }) => {
+            // Match png name value from 'home/collection' to 'image' value
             const picture = collectionImages.find(({ name }) => name === image)
             return (
               <Box
@@ -133,51 +134,55 @@ const IndexPage = ({ path }: PageProps) => {
         </Stack>
       </Box>
       {/* == Feature section == */}
-      <Box
-        as="section"
-        bg="darkGray.500"
-        color="white"
-        marginTop="32"
-        px="6"
-        py="16"
-        borderRadius="10px"
-      >
-        <Box marginBottom="72px" width="272px" mx="auto">
-          <Heading size="2xl">Why choose us?</Heading>
-          <Text>
-            A large part of our role is choosing which particular coffees will
-            be featured in our range. This means working closely with the best
-            coffee growers to give you a more impactful experience on every
-            level.
-          </Text>
+      <Box as="section" position="relative" marginTop="32" color="white">
+        <Box
+          bg="darkGray.500"
+          borderRadius="10px"
+          height="902px"
+          position="absolute"
+          zIndex="-2"
+          top="0"
+          width="full"
+        ></Box>
+        <Box px="6" py="16">
+          <Box marginBottom="72px" width="272px" mx="auto">
+            <Heading size="2xl">Why choose us?</Heading>
+            <Text>
+              A large part of our role is choosing which particular coffees will
+              be featured in our range. This means working closely with the best
+              coffee growers to give you a more impactful experience on every
+              level.
+            </Text>
+          </Box>
+          <Stack as={List} spacing="6">
+            {featuresInfo.map(({ icon, title, description, id }) => {
+              // Matching svg name value from 'home/features' to the 'icon' value
+              const imageSVG = featuresImages.find(({ name }) => icon === name)
+              return (
+                <Center
+                  as={ListItem}
+                  key={id}
+                  flexDirection="column"
+                  bg="brand.500"
+                  px="24px"
+                  py="58px"
+                  borderRadius="8px"
+                >
+                  <Image
+                    src={imageSVG?.publicURL}
+                    alt=""
+                    width="72px"
+                    marginBottom="14"
+                  />
+                  <Heading as="h3" size="xl" textTransform="capitalize" mb="4">
+                    {title}
+                  </Heading>
+                  <Text>{description}</Text>
+                </Center>
+              )
+            })}
+          </Stack>
         </Box>
-        <Stack as={List} spacing="6">
-          {featuresInfo.map(({ icon, title, description, id }) => {
-            const imageSVG = featuresImages.find(({ name }) => icon === name)
-            return (
-              <Center
-                as={ListItem}
-                key={id}
-                flexDirection="column"
-                bg="brand.500"
-                px="24px"
-                py="58px"
-                borderRadius="8px"
-              >
-                <Image
-                  src={imageSVG?.publicURL}
-                  alt=""
-                  width="72px"
-                  marginBottom="14"
-                />
-                <Heading as="h3" size="xl" textTransform="capitalize" mb="4">
-                  {title}
-                </Heading>
-                <Text>{description}</Text>
-              </Center>
-            )
-          })}
-        </Stack>
       </Box>
       {/* == Subscription Details section == */}
     </Layout>
