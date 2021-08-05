@@ -144,7 +144,7 @@ const IndexPage = ({ path }: PageProps) => {
           top="0"
           width="full"
         ></Box>
-        <Box px="6" py="16">
+        <Box px="6" pt="16">
           <Box marginBottom="72px" width="272px" mx="auto">
             <Heading size="2xl">Why choose us?</Heading>
             <Text>
