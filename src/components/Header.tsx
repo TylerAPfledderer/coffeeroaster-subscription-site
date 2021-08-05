@@ -1,19 +1,12 @@
 import React from "react"
-import {
-  Box,
-  Button,
-  Container,
-  Flex,
-  Image,
-  useMediaQuery,
-} from "@chakra-ui/react"
+import { Box, Button, Container, Flex, useMediaQuery } from "@chakra-ui/react"
 import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons"
 import { useState } from "react"
 import NavList from "./NavList"
 import Hero from "./Hero"
 import { LocationProps } from "../types/interfaces"
 import { HeroDataProps } from "./layout"
-import { graphql, useStaticQuery } from "gatsby"
+import Logo from "./Logo"
 
 // Define props here to pass typping in parent component
 interface HeaderProps extends LocationProps, HeroDataProps {}
@@ -24,26 +17,13 @@ const Header: React.FC<HeaderProps> = ({ pagePath, heroData }) => {
 
   const [isGreaterThan768] = useMediaQuery("(min-width: 768px)")
 
-  const logo = useStaticQuery(graphql`
-    query QueryLogo {
-      file(relativePath: { eq: "logo.svg" }) {
-        publicURL
-      }
-    }
-  `)
-
   return (
-    <Box
-      as="header"
-      maxW="1440px"
-      mx="auto"
-      px={{ base: "16px", md: "42px", lg: "80px" }}
-    >
+    <Box as="header" maxW="1440px" mx="auto" px={{ md: "42px", lg: "80px" }}>
       {/* The proverbial "Navbar" */}
       <Flex
         justifyContent="space-between"
         alignItems="center"
-        px="inherit"
+        px={{ base: "6", md: "inherit" }}
         py="4"
         bg="white"
         width="full"
@@ -53,7 +33,7 @@ const Header: React.FC<HeaderProps> = ({ pagePath, heroData }) => {
         zIndex="sticky"
       >
         <Box w={{ base: "162px", md: "auto" }}>
-          <Image src={logo.file.publicURL} alt="" mb="0" />
+          <Logo />
         </Box>
         <Button
           bg="transparent"
