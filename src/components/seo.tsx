@@ -6,20 +6,17 @@
  */
 
 import * as React from "react"
-import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
 interface SEOProps {
   description?: string
   lang?: string
-  meta: [
-    {
-      name: string
-      content: string
-    }
-  ]
-  title?: string
+  meta?: Array<{
+    name: string
+    content: string
+  }>
+  title: string
 }
 
 const Seo = ({ description, lang, meta, title }: SEOProps) => {
@@ -80,22 +77,12 @@ const Seo = ({ description, lang, meta, title }: SEOProps) => {
           name: `twitter:description`,
           content: metaDescription,
         },
-      ].concat(meta)}
+      ].concat(
+        // Needs at least an empty array, else it throws overload error due to optional meta prop that can return 'undefined'
+        meta || []
+      )}
     />
   )
-}
-
-Seo.defaultProps = {
-  lang: `en`,
-  meta: [],
-  description: ``,
-}
-
-Seo.propTypes = {
-  description: PropTypes.string,
-  lang: PropTypes.string,
-  meta: PropTypes.arrayOf(PropTypes.object),
-  title: PropTypes.string.isRequired,
 }
 
 export default Seo
