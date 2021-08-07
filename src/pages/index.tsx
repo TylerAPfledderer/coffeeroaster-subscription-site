@@ -1,4 +1,4 @@
-import { graphql, PageProps, useStaticQuery } from "gatsby"
+import { graphql, PageProps, useStaticQuery, Link as GatsbyLink } from "gatsby"
 import React from "react"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
@@ -8,6 +8,7 @@ import CoffeePressTabletImg from "../images/home/hero/coffeepress-tablet.jpg"
 import CoffeePressDesktopImg from "../images/home/hero/coffeepress-desktop.jpg"
 import {
   Box,
+  Button,
   Center,
   Heading,
   Image,
@@ -35,9 +36,18 @@ const IndexPage = ({ path }: PageProps) => {
       description: string
     }>
   }
+
+  interface SubDetailsJson {
+    nodes: Array<{
+      step: number
+      title: string
+      description: string
+    }>
+  }
   interface HomeData {
     allCollectionInfoJson: SectionInfoJson
     allFeaturesInfoJson: SectionInfoJson
+    allSubDetailsJson: SubDetailsJson
     CollectionImages: ImagesQuery
     FeaturesImages: ImagesQuery
   }
@@ -45,6 +55,7 @@ const IndexPage = ({ path }: PageProps) => {
   const {
     allCollectionInfoJson: { nodes: collectionInfo },
     allFeaturesInfoJson: { nodes: featuresInfo },
+    allSubDetailsJson: { nodes: subDetails },
     CollectionImages: { nodes: collectionImages },
     FeaturesImages: { nodes: featuresImages },
   }: HomeData = useStaticQuery(graphql`
@@ -61,6 +72,13 @@ const IndexPage = ({ path }: PageProps) => {
         nodes {
           id
           icon
+          title
+          description
+        }
+      }
+      allSubDetailsJson {
+        nodes {
+          step
           title
           description
         }
@@ -145,8 +163,10 @@ const IndexPage = ({ path }: PageProps) => {
           width="full"
         ></Box>
         <Box px="6" pt="16">
-          <Box marginBottom="72px" width="272px" mx="auto">
-            <Heading size="2xl">Why choose us?</Heading>
+          <Box marginBottom="72px" maxWidth="540px" mx="auto">
+            <Heading size="2xl" marginBottom="6">
+              Why choose us?
+            </Heading>
             <Text>
               A large part of our role is choosing which particular coffees will
               be featured in our range. This means working closely with the best
@@ -185,6 +205,45 @@ const IndexPage = ({ path }: PageProps) => {
         </Box>
       </Box>
       {/* == Subscription Details section == */}
+      <Box as="section" marginTop="32">
+        <Heading
+          fontSize="1.5rem"
+          lineHeight="32px"
+          color="gray.500"
+          marginBottom="92px"
+        >
+          How it works
+        </Heading>
+        <Stack as={List} spacing="72px">
+          {subDetails.map(({ step, title, description }) => (
+            <ListItem key={step}>
+              <Text
+                fontSize="72px"
+                fontFamily="heading"
+                color="accent-primary.500"
+              >
+                {
+                  // Add a 0 in front of the iterated number
+                  "0" + step
+                }
+              </Text>
+              <Heading as="h3" size="xl" marginBottom="6">
+                {title}
+              </Heading>
+              <Text>{description}</Text>
+            </ListItem>
+          ))}
+        </Stack>
+        <Button
+          as={GatsbyLink}
+          to="/subscribe"
+          size="lg"
+          mt="20"
+          colorScheme="brand"
+        >
+          Create your plan
+        </Button>
+      </Box>
     </Layout>
   )
 }
