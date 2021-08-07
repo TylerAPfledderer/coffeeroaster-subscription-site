@@ -8,7 +8,7 @@ export default extendTheme({
       700: "#0c7471",
     },
     "accent-primary": {
-      500: "fdd6ba",
+      500: "#fdd6ba",
     },
     "accent-secondary": {
       500: "#F4F1EB",
@@ -53,6 +53,11 @@ export default extendTheme({
       },
       defaultProps: {
         size: "3xl",
+      },
+    },
+    Button: {
+      baseStyle: {
+        fontFamily: "heading",
       },
     },
   },
