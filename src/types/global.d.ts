@@ -1,2 +1,2 @@
-declare module "*.jpg"
-declare module "react-helmet"
+declare module '*.jpg';
+declare module 'react-helmet';

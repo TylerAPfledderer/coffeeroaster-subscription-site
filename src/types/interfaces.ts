@@ -1,3 +1,3 @@
 export interface LocationProps {
-  pagePath?: string
+  pagePath?: string;
 }
