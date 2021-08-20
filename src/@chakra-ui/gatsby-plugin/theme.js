@@ -35,19 +35,19 @@ export default extendTheme({
     Heading: {
       sizes: {
         '4xl': {
-          fontSize: 'clamp(2.488rem, 16.8vw - 1.8rem, 4.209rem)',
-          lineHeight: 'clamp(3rem, 29.3vw - 4.5rem, 6rem)',
+          fontSize: 'clamp(2.488rem, 2.6vw + 1.9rem, 4.209rem)',
+          lineHeight: 'clamp(3rem, 4.5vw + 1.9rem, 6rem)',
         },
         '3xl': {
-          fontSize: 'clamp(2.074rem, 20.4vw - 2.7rem, 3.157rem)',
-          lineHeight: 'clamp(3rem, 28.2vw - 3.6rem, 4.5rem)',
+          fontSize: 'clamp(2.074rem, 1.6vw + 1.7rem, 3.157rem)',
+          lineHeight: 'clamp(3rem, 2.3vw + 2.5rem, 4.5rem)',
         },
         '2xl': {
-          fontSize: 'clamp(1.728rem, 12.1vw - 1.1rem, 2.369rem)',
+          fontSize: 'clamp(1.728rem, 1vw + 1.5rem, 2.369rem)',
           lineHeight: '3rem',
         },
         xl: {
-          fontSize: 'clamp(1.44rem, 6.3vw + 0rem, 1.777rem)',
+          fontSize: 'clamp(1.44rem, 0.5vw + 1.3rem, 1.777rem)',
           lineHeight: '3rem',
         },
       },
