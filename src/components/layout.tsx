@@ -64,8 +64,13 @@ const Layout: React.FC<LayoutProps> = ({children, location, heroData}) => {
           display={{md: 'none'}}
           onClick={useCallback(() => setMenuToggle(!isMenuOpen), [isMenuOpen])}
           aria-expanded={isMenuOpen}
+          data-testid="nav-button"
         >
-          {isMenuOpen ? <CloseIcon /> : <HamburgerIcon />}
+          {isMenuOpen ? (
+            <CloseIcon data-testid="close-nav-icon" />
+          ) : (
+            <HamburgerIcon data-testid="open-nav-icon" />
+          )}
         </Button>
         <Container
           as="nav"

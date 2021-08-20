@@ -40,8 +40,8 @@ const NavListLink: React.FC<NavLinkProps> = ({name, path}) => (
  * - Use forwardRef to get the ref to the internal Chakra components. Pass the props equal to the parent component.
  */
 
-const NavList = forwardRef<StackProps, typeof List>((props) => (
-  <Stack as={List} {...props}>
+const NavList = forwardRef<StackProps, typeof List>((props, ref) => (
+  <Stack as={List} {...props} ref={ref}>
     <NavListLink name="Home" path="/" />
     <NavListLink name="About Us" path="/about" />
     <NavListLink name="Create Your Plan" path="/subscribe" />

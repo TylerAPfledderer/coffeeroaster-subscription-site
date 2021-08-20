@@ -7,7 +7,13 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
   ],
-  ignorePatterns: ['gatsby-config.js'],
+  ignorePatterns: [
+    'gatsby-config.js',
+    'jest-preprocess.js',
+    'jest.config.js',
+    'loadershim.js',
+    '__mocks__/*',
+  ],
   settings: {
     react: {
       version: 'detect',
@@ -17,6 +23,7 @@ module.exports = {
     browser: true,
     node: true,
     es6: true,
+    jest: true,
   },
   plugins: ['@typescript-eslint', 'react', 'prettier'],
   parserOptions: {
@@ -62,7 +69,7 @@ module.exports = {
     'space-before-blocks': 'error',
     'no-param-reassign': 'error',
     'prefer-spread': 'warn',
-    'function-paren-newline': 'warn',
+    'function-paren-newline': ['warn', 'multiline-arguments'],
     'prefer-arrow-callback': 'warn',
     'arrow-spacing': 'error',
     'arrow-parens': 'error',
@@ -134,7 +141,7 @@ module.exports = {
     'react/no-string-refs': 'error',
     'react/jsx-wrap-multilines': 'warn',
     'react/self-closing-comp': 'error',
-    'react/jsx-no-bind': 'error',
+    'react/jsx-no-bind': ['error', {allowArrowFunctions: true}],
     'react/require-render-return': 'error',
     'react/no-is-mounted': 'error',
   },
