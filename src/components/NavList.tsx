@@ -1,6 +1,13 @@
-import React, {ComponentPropsWithRef} from 'react';
+import React from 'react';
 import {Link as GatsbyLink} from 'gatsby';
-import {Container, Link, List, ListItem, Stack} from '@chakra-ui/react';
+import {
+  forwardRef,
+  Link,
+  List,
+  ListItem,
+  Stack,
+  StackProps,
+} from '@chakra-ui/react';
 
 interface NavLinkProps {
   name: string;
@@ -25,19 +32,20 @@ const NavListLink: React.FC<NavLinkProps> = ({name, path}) => (
 /**
  *
  * The NavList is primitive in styling as it is used in multiple locations.
- * These locations layout out and color the links differently.
- * Therefore, Chakra props are allowed to be passed into this component
+ * - These locations give different layout and color the links differently.
+ * - Chakra props are allowed to be passed into this component
  *  instead of applying them directly to the internal Chakra components.
- * Props passed here should be ones that provide inheritance
+ * - Props passed here should be ones that provide inheritance
  *  down to the links themselves, so no further complication necessary.
+ * - Use forwardRef to get the ref to the internal Chakra components. Pass the props equal to the parent component.
  */
 
-const NavList: React.FC<ComponentPropsWithRef<typeof Container>> = (props) => (
+const NavList = forwardRef<StackProps, typeof List>((props) => (
   <Stack as={List} {...props}>
     <NavListLink name="Home" path="/" />
     <NavListLink name="About Us" path="/about" />
     <NavListLink name="Create Your Plan" path="/subscribe" />
   </Stack>
-);
+));
 
 export default NavList;
