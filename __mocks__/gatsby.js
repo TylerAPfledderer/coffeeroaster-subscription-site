@@ -22,5 +22,13 @@ module.exports = {
       })
   ),
   StaticQuery: jest.fn(),
-  useStaticQuery: jest.fn(),
+  useStaticQuery: jest.fn().mockImplementationOnce(() => ({
+    site: {
+      siteMetadata: {
+        title: 'Gatsby Starter Blog',
+        description: 'A starter blog demonstrating what Gatsby can do.',
+        author: 'kylemathews',
+      },
+    },
+  })),
 };

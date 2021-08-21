@@ -21,6 +21,18 @@ test('renders correctly', () => {
 
 const navButton = () => screen.getByTestId('nav-button');
 
+const isMenuClosed = () => {
+  userEvent.click(navButton());
+  expect(navButton()).toHaveAttribute('aria-expanded', 'false');
+  expect(screen.getByTestId('open-nav-icon')).toBeTruthy();
+};
+
+const isMenuOpen = () => {
+  userEvent.click(navButton());
+  expect(navButton()).toHaveAttribute('aria-expanded', 'true');
+  expect(screen.getByTestId('close-nav-icon')).toBeTruthy();
+};
+
 /**
  * Check Mobile Nav button on toggle
  */
@@ -28,16 +40,13 @@ test('Mobile nav toggling open and close with aria-expanded with change of icon'
   renderLayout();
 
   /** Initial state on page load */
-  expect(navButton()).toHaveAttribute('aria-expanded', 'false');
-  expect(screen.getByTestId('open-nav-icon')).toBeTruthy();
+  isMenuClosed();
 
   /** First change of state on click to open */
-  userEvent.click(navButton());
-  expect(navButton()).toHaveAttribute('aria-expanded', 'true');
-  expect(screen.getByTestId('close-nav-icon')).toBeTruthy();
+
+  isMenuOpen();
 
   /** Change back to closed */
-  userEvent.click(navButton());
-  expect(navButton()).toHaveAttribute('aria-expanded', 'false');
-  expect(screen.getByTestId('open-nav-icon')).toBeTruthy();
+
+  isMenuClosed();
 });

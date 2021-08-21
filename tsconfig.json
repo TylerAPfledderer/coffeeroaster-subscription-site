@@ -4,7 +4,11 @@
     "target": "esnext",
     "module": "esnext",
     "lib": ["dom", "esnext"],
+    "baseUrl": "src",
     "allowJs": true,
+    "paths": {
+      "test-utils": ["utils/test-utils.tsx"]
+    },
     "jsx": "react",
     "noEmit": true,
     "strict": true,
