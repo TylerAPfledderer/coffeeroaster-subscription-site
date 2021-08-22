@@ -12,9 +12,11 @@ import {
   Link,
   List,
   ListItem,
+  useDisclosure,
   useMediaQuery,
+  VisuallyHidden,
 } from '@chakra-ui/react';
-import React, {useCallback, useState} from 'react';
+import React from 'react';
 import Header from './Header';
 import Logo from './Logo';
 import NavList from './NavList';
@@ -34,8 +36,9 @@ interface LayoutProps extends HeroDataProps {
 
 const Layout: React.FC<LayoutProps> = ({children, location, heroData}) => {
   // Toggling Nav Menu (on the small screen)
-  const [isMenuOpen, setMenuToggle] = useState(false);
+  const {isOpen: isMenuOpen, onToggle: setMenuToggle} = useDisclosure();
   const [isGreaterThan768] = useMediaQuery('(min-width: 768px)');
+
   return (
     <Box
       textAlign="center"
@@ -62,10 +65,11 @@ const Layout: React.FC<LayoutProps> = ({children, location, heroData}) => {
         <Button
           bg="transparent"
           display={{md: 'none'}}
-          onClick={useCallback(() => setMenuToggle(!isMenuOpen), [isMenuOpen])}
+          onClick={setMenuToggle}
           aria-expanded={isMenuOpen}
           data-testid="nav-button"
         >
+          <VisuallyHidden>Main Menu</VisuallyHidden>
           {isMenuOpen ? (
             <CloseIcon data-testid="close-nav-icon" />
           ) : (
@@ -106,7 +110,9 @@ const Layout: React.FC<LayoutProps> = ({children, location, heroData}) => {
         </Container>
       </Flex>
       <Header pagePath={location} heroData={heroData} />
-      <Box as="main">{children}</Box>
+      <Box as="main" sx={{'& > section': {layerStyle: 'mainSection'}}}>
+        {children}
+      </Box>
       {/* The Footer */}
       <Flex
         as="footer"
