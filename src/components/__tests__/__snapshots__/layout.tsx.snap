@@ -45,7 +45,7 @@ Object {
             class="css-1bhtjse"
           >
             <svg
-              class="chakra-icon css-1e7gpqx"
+              class="chakra-icon css-7cl7lf"
               focusable="false"
               viewBox="0 0 237 27"
             >
@@ -71,6 +71,11 @@ Object {
             data-testid="nav-button"
             type="button"
           >
+            <span
+              class="css-f8n5zr"
+            >
+              Main Menu
+            </span>
             <svg
               class="chakra-icon css-onkibi"
               data-testid="open-nav-icon"
@@ -155,7 +160,7 @@ Object {
             class="css-9ptzq0"
           >
             <svg
-              class="chakra-icon css-1e7gpqx"
+              class="chakra-icon css-7cl7lf"
               focusable="false"
               viewBox="0 0 237 27"
             >
@@ -286,7 +291,7 @@ Object {
           class="css-1bhtjse"
         >
           <svg
-            class="chakra-icon css-1e7gpqx"
+            class="chakra-icon css-7cl7lf"
             focusable="false"
             viewBox="0 0 237 27"
           >
@@ -312,6 +317,11 @@ Object {
           data-testid="nav-button"
           type="button"
         >
+          <span
+            class="css-f8n5zr"
+          >
+            Main Menu
+          </span>
           <svg
             class="chakra-icon css-onkibi"
             data-testid="open-nav-icon"
@@ -396,7 +406,7 @@ Object {
           class="css-9ptzq0"
         >
           <svg
-            class="chakra-icon css-1e7gpqx"
+            class="chakra-icon css-7cl7lf"
             focusable="false"
             viewBox="0 0 237 27"
           >
