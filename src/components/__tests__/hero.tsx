@@ -1,5 +1,5 @@
 import React from 'react';
-import {render} from 'test-utils';
+import {render, screen} from 'test-utils';
 
 import Hero from '../Hero';
 
@@ -9,9 +9,21 @@ const mockData = {
   imageSet: {},
 };
 
+const renderHero = (path?: string) => render(<Hero heroData={mockData} pagePath={path} />);
+
 describe('Hero', () => {
   it('renders correctly', () => {
-    const tree = render(<Hero heroData={mockData} />);
-    expect(tree).toMatchSnapshot();
+    expect(renderHero('/')).toMatchSnapshot();
   });
+});
+
+test('Button link for Index Hero', () => {
+  renderHero('/');
+  const button = screen.getByTestId('hero-button');
+
+  // Make sure it exists on the index page
+  expect(button).toBeTruthy();
+
+  // Make sure it holds the correct path to the subscription page
+  expect(button.getAttribute('href')).toBe('/subscribe');
 });

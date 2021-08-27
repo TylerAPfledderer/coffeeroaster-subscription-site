@@ -17,11 +17,15 @@ export default extendTheme({
     darkGray: {500: '#333d4b'},
   },
   fonts: {
-    heading:
-      'Fraunces,"Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif',
+    heading: 'Fraunces,"Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif',
     body: 'Barlow, "Helvetica Neue", Helvetica, Arial, sans-serif',
   },
   layerStyles: {
+    layoutBase: {
+      paddingX: {base: '6', md: '42px', lg: '80px'},
+      maxWidth: '1440px',
+      marginX: 'auto',
+    },
     navOpened: {
       maxHeight: 'full',
       opacity: '1',
@@ -70,6 +74,35 @@ export default extendTheme({
     Button: {
       baseStyle: {
         fontFamily: 'heading',
+      },
+    },
+    Link: {
+      variants: {
+        primaryButton: {
+          alignItems: 'center',
+          backgroundColor: 'brand.500',
+          borderRadius: 'md',
+          color: 'white',
+          display: 'inline-flex',
+          fontFamily: 'heading',
+          fontSize: 'lg',
+          fontWeight: 'semiBold',
+          height: 12,
+          justifyContent: 'center',
+          lineHeight: '1.2',
+          minW: 12,
+          px: 6,
+          position: 'relative',
+          whiteSpace: 'nowrap',
+          width: 'auto',
+          _hover: {
+            textDecoration: 'none',
+            backgroundColor: 'brand.600',
+          },
+          _active: {
+            backgroundColor: 'brand.700',
+          },
+        },
       },
     },
   },

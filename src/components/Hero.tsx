@@ -1,15 +1,12 @@
 import React from 'react';
-import {Box, Button, Flex, Heading, Text} from '@chakra-ui/react';
+import {Box, Flex, Heading, Link, Text} from '@chakra-ui/react';
 import {Link as GatsbyLink} from 'gatsby';
 import {LocationProps} from '../types/interfaces';
 import {HeroDataProps} from './layout';
 
 interface HeroProps extends LocationProps, HeroDataProps {}
 
-const Hero: React.FC<HeroProps> = ({
-  pagePath,
-  heroData: {title, description, imageSet},
-}) => (
+const Hero: React.FC<HeroProps> = ({pagePath, heroData: {title, description, imageSet}}) => (
   <Flex
     as="section"
     direction="column"
@@ -20,25 +17,19 @@ const Hero: React.FC<HeroProps> = ({
     bgRepeat="no-repeat"
     color="white"
     textAlign={{md: 'left'}}
-    padding={{base: '100px 24px', md: '100px 56px'}}
+    padding={{base: '100px 24px', md: '100px 56px', xl: '100px 88px'}}
     borderRadius="10px"
     marginTop="76px"
   >
-    <Box maxW="398px">
+    <Box width="clamp(17.44rem, 20vw + 12.8rem, 30.75rem)">
       <Heading as="h1" size="4xl" mb="6">
         {title}
       </Heading>
       <Text maxWidth="445px">{description}</Text>
       {pagePath === '/' && (
-        <Button
-          as={GatsbyLink}
-          to="/subscribe"
-          size="lg"
-          mt="48px"
-          colorScheme="brand"
-        >
+        <Link as={GatsbyLink} to="/subscribe" mt="48px" data-testid="hero-button" variant="primaryButton">
           Create your plan
-        </Button>
+        </Link>
       )}
     </Box>
   </Flex>

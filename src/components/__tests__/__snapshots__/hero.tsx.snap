@@ -36,10 +36,10 @@ Object {
     </div>
     <div>
       <section
-        class="css-7o62zi"
+        class="css-sm1chx"
       >
         <div
-          class="css-flrva9"
+          class="css-1gthe6r"
         >
           <h1
             class="chakra-heading css-1lrjiby"
@@ -51,16 +51,23 @@ Object {
           >
             My Description
           </p>
+          <a
+            class="chakra-link css-vzdppp"
+            data-testid="hero-button"
+            href="/subscribe"
+          >
+            Create your plan
+          </a>
         </div>
       </section>
     </div>
   </body>,
   "container": <div>
     <section
-      class="css-7o62zi"
+      class="css-sm1chx"
     >
       <div
-        class="css-flrva9"
+        class="css-1gthe6r"
       >
         <h1
           class="chakra-heading css-1lrjiby"
@@ -72,6 +79,13 @@ Object {
         >
           My Description
         </p>
+        <a
+          class="chakra-link css-vzdppp"
+          data-testid="hero-button"
+          href="/subscribe"
+        >
+          Create your plan
+        </a>
       </div>
     </section>
   </div>,
