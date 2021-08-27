@@ -42,7 +42,7 @@ module.exports = {
     // Enable prettier rules
     'prettier/prettier': [
       'error',
-      {singleQuote: true, bracketSpacing: false, endOfLine: 'auto'},
+      {singleQuote: true, bracketSpacing: false, printWidth: 110, endOfLine: 'auto'},
     ],
     'quote-props': ['error', 'as-needed'],
     'prefer-const': 'error',
@@ -90,7 +90,6 @@ module.exports = {
     'no-multi-assign': 'error',
     'no-plusplus': ['error', {allowForLoopAfterthoughts: true}],
     'operator-linebreak': ['error', 'none'],
-    'no-unused-vars': ['error'],
     eqeqeq: 'error',
     'no-case-declarations': 'error',
     'no-nested-ternary': 'error',
@@ -144,5 +143,7 @@ module.exports = {
     'react/jsx-no-bind': ['error', {allowArrowFunctions: true}],
     'react/require-render-return': 'error',
     'react/no-is-mounted': 'error',
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': ['error'],
   },
 };
