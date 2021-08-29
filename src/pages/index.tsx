@@ -8,15 +8,16 @@ import CoffeePressTabletImg from '../images/home/hero/coffeepress-tablet.jpg';
 import CoffeePressDesktopImg from '../images/home/hero/coffeepress-desktop.jpg';
 import {
   Box,
-  Button,
   Center,
   Flex,
   Heading,
   Image,
+  Link,
   List,
   ListItem,
   Stack,
   Text,
+  useMediaQuery,
   VStack,
 } from '@chakra-ui/react';
 
@@ -95,18 +96,14 @@ const IndexPage: React.FC<Pick<PageProps, 'path'>> = ({path}) => {
           description
         }
       }
-      CollectionImages: allFile(
-        filter: {relativeDirectory: {eq: "home/collection"}}
-      ) {
+      CollectionImages: allFile(filter: {relativeDirectory: {eq: "home/collection"}}) {
         nodes {
           id
           publicURL
           name
         }
       }
-      FeaturesImages: allFile(
-        filter: {relativeDirectory: {eq: "home/features"}}
-      ) {
+      FeaturesImages: allFile(filter: {relativeDirectory: {eq: "home/features"}}) {
         nodes {
           id
           publicURL
@@ -116,16 +113,22 @@ const IndexPage: React.FC<Pick<PageProps, 'path'>> = ({path}) => {
     }
   `);
 
+  /*
+   * TODO: Create a Context in the layout component to pass the following data through to the hero component
+   */
   const indexHero = {
     title: 'Great coffee made simple.',
     description:
       'Start your mornings with the world’s best coffees. Try our expertly curated artisan coffees from our best roasters delivered directly to your door, at your schedule.',
     imageSet: {
       base: CoffeePressMobileImg,
-      sm: CoffeePressTabletImg,
+      md: CoffeePressTabletImg,
       xl: CoffeePressDesktopImg,
     },
   };
+
+  // For use with collectionInfo and featureInfo scroll reveals
+  const [isLessThan1280] = useMediaQuery('(max-width: 1280px)');
 
   return (
     <Layout location={path} heroData={indexHero}>
@@ -135,13 +138,14 @@ const IndexPage: React.FC<Pick<PageProps, 'path'>> = ({path}) => {
         <Heading
           bgGradient={{
             md: 'linear(gray.500 25%, transparent)',
+            xl: 'linear(gray.500 50%, transparent)',
           }}
           bgColor={{base: 'gray.500', md: 'transparent'}}
           bgClip="text"
           fill="transparent"
-          filter={{md: 'opacity(0.5)'}}
-          fontSize={{base: '40px', md: '96px'}}
-          lineHeight="72px"
+          filter={{md: 'opacity(0.5)', xl: 'opacity(0.8)'}}
+          fontSize={{base: '40px', md: '96px', xl: '150px'}}
+          lineHeight={{base: '72px', xl: '7rem'}}
           marginBottom="8"
           position={{md: 'absolute'}}
           textTransform="lowercase"
@@ -151,10 +155,11 @@ const IndexPage: React.FC<Pick<PageProps, 'path'>> = ({path}) => {
         </Heading>
         <Stack
           as={List}
-          spacing="56px"
+          spacing={{base: '56px', xl: '8'}}
           overflow="visible"
           maxWidth="full"
           paddingX={{md: '56px'}}
+          direction={{base: 'column', xl: 'row'}}
         >
           {collectionInfo.map(({id, image, title, description}, index) => {
             // Match png name value from 'home/collection' to 'image' value
@@ -164,18 +169,19 @@ const IndexPage: React.FC<Pick<PageProps, 'path'>> = ({path}) => {
                 as={ListItem}
                 key={id}
                 display="flex"
-                flexDirection={{base: 'column', md: 'row'}}
+                flexDirection={{base: 'column', md: 'row', xl: 'column'}}
                 alignItems="center"
                 paddingX={['24px', '0']}
-                data-sal={index % 2 ? 'slide-left' : 'slide-right'}
+                data-sal={index % 2 && isLessThan1280 ? 'slide-left' : 'slide-right'}
                 data-sal-duration="1000"
               >
                 <Image src={picture?.publicURL} height="184px" />
-                <Box textAlign={{md: 'left'}} marginLeft={{md: '36px'}}>
+                <Box textAlign={{md: 'left', xl: 'center'}} marginLeft={{md: '36px', xl: 0}} maxWidth="255px">
                   <Heading
                     as="h3"
                     size="2xl"
                     textTransform="capitalize"
+                    fontSize={{xl: '1.777rem'}}
                     mb={{base: '4', md: '6'}}
                   >
                     {title}
@@ -204,13 +210,12 @@ const IndexPage: React.FC<Pick<PageProps, 'path'>> = ({path}) => {
               Why choose us?
             </Heading>
             <Text>
-              A large part of our role is choosing which particular coffees will
-              be featured in our range. This means working closely with the best
-              coffee growers to give you a more impactful experience on every
-              level.
+              A large part of our role is choosing which particular coffees will be featured in our range.
+              This means working closely with the best coffee growers to give you a more impactful experience
+              on every level.
             </Text>
           </VStack>
-          <Stack as={List} spacing="6">
+          <Stack as={List} spacing="6" direction={{base: 'column', xl: 'row'}}>
             {featuresInfo.map(({icon, title, description, id}, index) => {
               // Matching svg name value from 'home/features' to the 'icon' value
               const imageSVG = featuresImages.find(({name}) => icon === name);
@@ -219,29 +224,23 @@ const IndexPage: React.FC<Pick<PageProps, 'path'>> = ({path}) => {
                   key={id}
                   as={ListItem}
                   borderRadius="8px"
-                  flexDirection={{base: 'column', md: 'row'}}
+                  flexDirection={{base: 'column', md: 'row', xl: 'column'}}
                   bg="brand.500"
-                  padding={{md: '42px 48px 42px 17px'}}
-                  px="24px"
-                  py="58px"
-                  data-sal={index % 2 ? 'flip-down' : 'flip-up'}
+                  padding={{base: '58px 24px', md: '42px 48px 42px 17px', xl: '72px 48px 56px'}}
+                  data-sal={index % 2 && isLessThan1280 ? 'flip-down' : 'flip-up'}
                   data-sal-duration="1000"
                 >
                   <Center width={{md: '165px'}} flexShrink={0}>
                     <Image
                       src={imageSVG?.publicURL}
                       alt=""
-                      width={{base: '72px', md: '56px'}}
-                      marginBottom={{base: '14', md: '0'}}
+                      height={{base: '72px', md: '14', xl: '72px'}}
+                      width="auto"
+                      marginBottom={{base: '14', md: '0', xl: '14'}}
                     />
                   </Center>
-                  <Box textAlign={{md: 'left'}}>
-                    <Heading
-                      as="h3"
-                      size="xl"
-                      textTransform="capitalize"
-                      mb="4"
-                    >
+                  <Box textAlign={{md: 'left', xl: 'center'}}>
+                    <Heading as="h3" size="xl" textTransform="capitalize" mb="4">
                       {title}
                     </Heading>
                     <Text>{description}</Text>
@@ -253,7 +252,7 @@ const IndexPage: React.FC<Pick<PageProps, 'path'>> = ({path}) => {
         </Box>
       </Box>
       {/* == Subscription Details section == */}
-      <Box as="section">
+      <Box as="section" alignItems={{xl: 'flex-start !important'}}>
         <Heading
           fontSize="1.5rem"
           lineHeight="32px"
@@ -263,11 +262,7 @@ const IndexPage: React.FC<Pick<PageProps, 'path'>> = ({path}) => {
         >
           How it works
         </Heading>
-        <Stack
-          as={List}
-          spacing={{base: '72px', md: '0'}}
-          direction={{base: 'column', md: 'row'}}
-        >
+        <Stack as={List} spacing={{base: '72px', md: '0'}} direction={{base: 'column', md: 'row'}}>
           {subDetails.map(({id, step, title, description}) => (
             <Flex
               as={ListItem}
@@ -277,6 +272,9 @@ const IndexPage: React.FC<Pick<PageProps, 'path'>> = ({path}) => {
               textAlign={{md: 'left'}}
               position="relative"
               paddingTop={{md: '72px'}}
+              maxWidth="380px"
+              paddingRight={{xl: '84px !important'}}
+              // Creates the circle in the upper left of the list item
               _before={{
                 md: {
                   // eslint-disable-next-line quotes
@@ -311,29 +309,22 @@ const IndexPage: React.FC<Pick<PageProps, 'path'>> = ({path}) => {
                   `0${step}`
                 }
               </Text>
-              <Heading
-                as="h3"
-                size="xl"
-                marginBottom="6"
-                lineHeight="1.5"
-                width={{md: '206px'}}
-              >
+              <Heading as="h3" size="xl" marginBottom="6" lineHeight="1.5" width={{md: '206px'}}>
                 {title}
               </Heading>
               <Text>{description}</Text>
             </Flex>
           ))}
         </Stack>
-        <Button
+        <Link
           as={GatsbyLink}
           to="/subscribe"
-          size="lg"
-          mt={{base: '20', md: '6'}}
-          colorScheme="brand"
+          mt={{base: '20', md: '6', xl: '72px'}}
           alignSelf={{base: 'center', md: 'flex-start'}}
+          variant="primaryButton"
         >
           Create your plan
-        </Button>
+        </Link>
       </Box>
     </Layout>
   );
