@@ -1,13 +1,6 @@
 import React from 'react';
 import {Link as GatsbyLink} from 'gatsby';
-import {
-  forwardRef,
-  Link,
-  List,
-  ListItem,
-  Stack,
-  StackProps,
-} from '@chakra-ui/react';
+import {forwardRef, Link, List, ListItem, Stack, StackProps} from '@chakra-ui/react';
 
 interface NavLinkProps {
   name: string;
@@ -16,14 +9,7 @@ interface NavLinkProps {
 
 const NavListLink: React.FC<NavLinkProps> = ({name, path}) => (
   <ListItem>
-    <Link
-      as={GatsbyLink}
-      to={path}
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      height="44px"
-    >
+    <Link as={GatsbyLink} to={path} display="flex" justifyContent="center" alignItems="center" height="44px">
       {name}
     </Link>
   </ListItem>
@@ -41,7 +27,7 @@ const NavListLink: React.FC<NavLinkProps> = ({name, path}) => (
  */
 
 const NavList = forwardRef<StackProps, typeof List>((props, ref) => (
-  <Stack as={List} {...props} ref={ref}>
+  <Stack as={List} {...props} ref={ref} aria-label="Main Navigation">
     <NavListLink name="Home" path="/" />
     <NavListLink name="About Us" path="/about" />
     <NavListLink name="Create Your Plan" path="/subscribe" />
