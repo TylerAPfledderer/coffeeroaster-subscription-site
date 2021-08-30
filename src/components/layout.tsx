@@ -1,5 +1,3 @@
-// TODO: Check this StackOverflow answer on setting up context for the pages: https://stackoverflow.com/a/62062145
-
 import {CloseIcon, HamburgerIcon} from '@chakra-ui/icons';
 import {
   Box,
@@ -16,7 +14,7 @@ import {
   useMediaQuery,
   VisuallyHidden,
 } from '@chakra-ui/react';
-import React from 'react';
+import React, {createContext} from 'react';
 import uuid from 'react-uuid';
 import Header from './Header';
 import Logo from './Logo';
@@ -190,41 +188,53 @@ const Footer: React.FC = () => {
     </Flex>
   );
 };
-
-// TODO: Send this interface to Context, unless default values handle the check
-export interface HeroDataProps {
-  heroData: {
-    title: string;
-    description: string;
-    imageSet: Record<string, 'none'>; // Extending Chakra's bgImage prop types
-  };
+export interface HeroData {
+  pagePath?: string;
+  title: string;
+  description: string;
+  imageSet: Record<string, 'none'>; // Extending Chakra's bgImage prop types
 }
 
-interface LayoutProps extends HeroDataProps {
-  location: string;
+export const HeroContext = createContext<HeroData>({
+  pagePath: undefined,
+  title: '',
+  description: '',
+  imageSet: {},
+});
+
+interface LayoutProps {
+  /**
+   * Content for the Hero component
+   * @property {string | undefined} pagePath - If page is index, then path of the page. Else undefined.
+   * @property {string} title - Title on the hero.
+   * @property {string} description - Description on the hero.
+   * @property {string} imageSet - Background images for the hero based on breakpoints.
+   */
+  heroData: HeroData;
 }
 
 /**
  * Wrapper component containing the Navbar, Header, and Footer
- * @param props.children - React node placed in the main element
- * @param props.location - The current location of the user
- * @param props.heroData - Data for the hero section
+ * @param {typeof children} children - React node placed in the main element
+ * @param {HeroContext} heroData - Data for the hero section
  */
-const Layout: React.FC<LayoutProps> = ({children, location, heroData}) => (
-  <Box
-    textAlign="center"
-    // ? Having to add this overflow for the scroll reveal seems like a bug
-    overflowX="hidden"
-    // sx={{'*': {outline: '1px solid red'}}}
-    layerStyle="layoutBase"
-  >
-    <NavBar />
-    <Header pagePath={location} heroData={heroData} />
-    <Box as="main" sx={{'& > section': {layerStyle: 'mainSection'}}}>
-      {children}
+const Layout: React.FC<LayoutProps> = ({children, heroData}) => (
+  <HeroContext.Provider value={heroData}>
+    <Box
+      textAlign="center"
+      // ? Having to add this overflow for the scroll reveal seems like a bug
+      overflowX="hidden"
+      sx={{'*': {outline: '1px solid red'}}}
+      layerStyle="layoutBase"
+    >
+      <NavBar />
+      <Header />
+      <Box as="main" sx={{'& > section': {layerStyle: 'mainSection'}}}>
+        {children}
+      </Box>
+      <Footer />
     </Box>
-    <Footer />
-  </Box>
+  </HeroContext.Provider>
 );
 
 export default Layout;

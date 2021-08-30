@@ -46,14 +46,10 @@ Object {
           >
             <h1
               class="chakra-heading css-1lrjiby"
-            >
-              My Title
-            </h1>
+            />
             <p
               class="chakra-text css-1n1p4c5"
-            >
-              My Description
-            </p>
+            />
           </div>
         </section>
       </header>
@@ -71,14 +67,10 @@ Object {
         >
           <h1
             class="chakra-heading css-1lrjiby"
-          >
-            My Title
-          </h1>
+          />
           <p
             class="chakra-text css-1n1p4c5"
-          >
-            My Description
-          </p>
+          />
         </div>
       </section>
     </header>

@@ -117,6 +117,7 @@ const IndexPage: React.FC<Pick<PageProps, 'path'>> = ({path}) => {
    * TODO: Create a Context in the layout component to pass the following data through to the hero component
    */
   const indexHero = {
+    pagePath: path,
     title: 'Great coffee made simple.',
     description:
       'Start your mornings with the world’s best coffees. Try our expertly curated artisan coffees from our best roasters delivered directly to your door, at your schedule.',
@@ -131,7 +132,7 @@ const IndexPage: React.FC<Pick<PageProps, 'path'>> = ({path}) => {
   const [isLessThan1280] = useMediaQuery('(max-width: 1280px)');
 
   return (
-    <Layout location={path} heroData={indexHero}>
+    <Layout heroData={indexHero}>
       <Seo title="Home" />
       {/* == Collection Section == */}
       <Box as="section">
