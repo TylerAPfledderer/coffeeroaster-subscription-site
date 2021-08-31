@@ -188,18 +188,27 @@ const Footer: React.FC = () => {
     </Flex>
   );
 };
-export interface HeroData {
+
+interface HeroData {
   pagePath?: string;
   title: string;
   description: string;
-  imageSet: Record<string, 'none'>; // Extending Chakra's bgImage prop types
+  imageSet: {
+    base: string;
+    md: string;
+    xl: string;
+  }; // Extending Chakra's bgImage prop types
 }
 
 export const HeroContext = createContext<HeroData>({
   pagePath: undefined,
   title: '',
   description: '',
-  imageSet: {},
+  imageSet: {
+    base: '',
+    md: '',
+    xl: '',
+  },
 });
 
 interface LayoutProps {

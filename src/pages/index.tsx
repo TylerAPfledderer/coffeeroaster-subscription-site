@@ -3,9 +3,6 @@ import React from 'react';
 import Layout from '../components/layout';
 import Seo from '../components/seo';
 
-import CoffeePressMobileImg from '../images/home/hero/coffeepress-mobile.jpg';
-import CoffeePressTabletImg from '../images/home/hero/coffeepress-tablet.jpg';
-import CoffeePressDesktopImg from '../images/home/hero/coffeepress-desktop.jpg';
 import {
   Box,
   Center,
@@ -48,12 +45,19 @@ const IndexPage: React.FC<Pick<PageProps, 'path'>> = ({path}) => {
       description: string;
     }>;
   }
+
+  interface SingleFileURL {
+    publicURL: string;
+  }
   interface HomeData {
     allCollectionInfoJson: SectionInfoJson;
     allFeaturesInfoJson: SectionInfoJson;
     allSubDetailsJson: SubDetailsJson;
     CollectionImages: ImagesQuery;
     FeaturesImages: ImagesQuery;
+    CoffeePressMobileImg: SingleFileURL;
+    CoffeePressTabletImg: SingleFileURL;
+    CoffeePressDesktopImg: SingleFileURL;
   }
 
   /**
@@ -70,6 +74,9 @@ const IndexPage: React.FC<Pick<PageProps, 'path'>> = ({path}) => {
     allSubDetailsJson: {nodes: subDetails},
     CollectionImages: {nodes: collectionImages},
     FeaturesImages: {nodes: featuresImages},
+    CoffeePressMobileImg: {publicURL: coffeeMobileImg},
+    CoffeePressTabletImg: {publicURL: coffeeTabletImg},
+    CoffeePressDesktopImg: {publicURL: coffeeDesktopImg},
   }: HomeData = useStaticQuery(graphql`
     query HomeDataQuery {
       allCollectionInfoJson {
@@ -110,6 +117,15 @@ const IndexPage: React.FC<Pick<PageProps, 'path'>> = ({path}) => {
           name
         }
       }
+      CoffeePressMobileImg: file(name: {regex: "/coffeepress-mobile/"}) {
+        publicURL
+      }
+      CoffeePressTabletImg: file(name: {regex: "/coffeepress-tablet/"}) {
+        publicURL
+      }
+      CoffeePressDesktopImg: file(name: {regex: "/coffeepress-desktop/"}) {
+        publicURL
+      }
     }
   `);
 
@@ -122,9 +138,9 @@ const IndexPage: React.FC<Pick<PageProps, 'path'>> = ({path}) => {
     description:
       'Start your mornings with the world’s best coffees. Try our expertly curated artisan coffees from our best roasters delivered directly to your door, at your schedule.',
     imageSet: {
-      base: CoffeePressMobileImg,
-      md: CoffeePressTabletImg,
-      xl: CoffeePressDesktopImg,
+      base: coffeeMobileImg,
+      md: coffeeTabletImg,
+      xl: coffeeDesktopImg,
     },
   };
 
