@@ -12,7 +12,11 @@ const mockDataWithPath = {
   pagePath: '/',
   title: 'My Title',
   description: 'My Description',
-  imageSet: {},
+  imageSet: {
+    base: '',
+    md: '',
+    xl: '',
+  },
 };
 
 // eslint-disable-next-line prettier/prettier
@@ -74,7 +78,11 @@ test('Button link for Index Hero', () => {
 const mockDataNoPath = {
   title: 'My Title',
   description: 'My Description',
-  imageSet: {},
+  imageSet: {
+    base: '',
+    md: '',
+    xl: '',
+  },
 };
 
 test('no error and button does not exist on hero', () => {

@@ -3,7 +3,7 @@
 exports[`renders correctly 1`] = `
 <div>
   <div
-    class="css-330wku"
+    class="css-1didiuh"
   >
     <div
       class="css-47r3xb"
@@ -104,7 +104,7 @@ exports[`renders correctly 1`] = `
       class="css-3emn1e"
     >
       <section
-        class="css-sm1chx"
+        class="css-10xvzcb"
       >
         <div
           class="css-1gthe6r"
@@ -206,6 +206,8 @@ exports[`renders correctly 1`] = `
           <a
             class="chakra-link css-rn7pqi"
             href="#"
+            rel="noopener noreferrer"
+            target="_blank"
           >
             <span
               class="css-f8n5zr"
@@ -230,6 +232,8 @@ exports[`renders correctly 1`] = `
           <a
             class="chakra-link css-rn7pqi"
             href="#"
+            rel="noopener noreferrer"
+            target="_blank"
           >
             <span
               class="css-f8n5zr"
@@ -254,6 +258,8 @@ exports[`renders correctly 1`] = `
           <a
             class="chakra-link css-rn7pqi"
             href="#"
+            rel="noopener noreferrer"
+            target="_blank"
           >
             <span
               class="css-f8n5zr"

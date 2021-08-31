@@ -1,87 +1,8 @@
-import {CloseIcon, HamburgerIcon} from '@chakra-ui/icons';
-import {
-  Box,
-  Button,
-  Center,
-  Container,
-  Flex,
-  HStack,
-  Icon,
-  Link,
-  List,
-  ListItem,
-  useDisclosure,
-  useMediaQuery,
-  VisuallyHidden,
-} from '@chakra-ui/react';
-import React, {createContext} from 'react';
+import {Box, Center, Flex, HStack, Icon, List, ListItem, Link, VisuallyHidden} from '@chakra-ui/react';
+import Logo from '../Logo';
+import NavList from '../NavList';
+import React from 'react';
 import uuid from 'react-uuid';
-import Header from './Header';
-import Logo from './Logo';
-import NavList from './NavList';
-
-/**
- * Component at the top of the page wrapping
- * the logo and the main navigation
- */
-const NavBar: React.FC = () => {
-  // Toggling Nav Menu (on the small screen)
-  const {isOpen: isMenuOpen, onToggle: setMenuToggle} = useDisclosure();
-  const [isGreaterThan768] = useMediaQuery('(min-width: 768px)');
-  return (
-    <Box position="fixed" top="0" left="0" zIndex="sticky" width="full">
-      <Flex justifyContent="space-between" alignItems="center" py="4" bg="white" layerStyle="layoutBase">
-        <Box w={{base: '162px', md: '235px'}}>
-          <Logo />
-        </Box>
-        <Button
-          bg="transparent"
-          display={{md: 'none'}}
-          onClick={setMenuToggle}
-          aria-expanded={isMenuOpen}
-          data-testid="nav-button"
-        >
-          <VisuallyHidden>Main Menu</VisuallyHidden>
-          {isMenuOpen ? (
-            <CloseIcon data-testid="close-nav-icon" />
-          ) : (
-            <HamburgerIcon data-testid="open-nav-icon" />
-          )}
-        </Button>
-        <Container
-          as="nav"
-          position={{base: 'fixed', md: 'static'}}
-          display="flex"
-          justifyContent={{base: 'center', md: 'revert'}}
-          pt={{base: '40px', md: 0}}
-          padding={{md: 0}}
-          margin={{md: 0}}
-          width={{base: 'full', md: 'auto'}}
-          maxW="full"
-          height={{base: '100vh', md: 'auto'}}
-          overflow="hidden"
-          top="72px"
-          left="0"
-          bgGradient="linear(#fff 50%, transparent)"
-          transition="max-height .3s, opacity .5s"
-          zIndex="overlay"
-          layerStyle={isGreaterThan768 || isMenuOpen ? 'navOpened' : 'navClosed'}
-        >
-          <NavList
-            listStyleType="none"
-            textTransform="uppercase"
-            direction={{base: 'column', md: 'row'}}
-            alignItems="center"
-            spacing="8"
-            fontSize={{base: '24px', md: '16px'}}
-            fontWeight={{md: 'bold'}}
-            color={{md: 'darkGray.500'}}
-          />
-        </Container>
-      </Flex>
-    </Box>
-  );
-};
 
 /**
  * Footer landmark render through the layout on each page
@@ -170,6 +91,7 @@ const Footer: React.FC = () => {
             <ListItem key={id}>
               <Center
                 as={Link}
+                isExternal
                 boxSize="44px"
                 padding="10px"
                 href="#"
@@ -189,61 +111,4 @@ const Footer: React.FC = () => {
   );
 };
 
-interface HeroData {
-  pagePath?: string;
-  title: string;
-  description: string;
-  imageSet: {
-    base: string;
-    md: string;
-    xl: string;
-  }; // Extending Chakra's bgImage prop types
-}
-
-export const HeroContext = createContext<HeroData>({
-  pagePath: undefined,
-  title: '',
-  description: '',
-  imageSet: {
-    base: '',
-    md: '',
-    xl: '',
-  },
-});
-
-interface LayoutProps {
-  /**
-   * Content for the Hero component
-   * @property {string | undefined} pagePath - If page is index, then path of the page. Else undefined.
-   * @property {string} title - Title on the hero.
-   * @property {string} description - Description on the hero.
-   * @property {string} imageSet - Background images for the hero based on breakpoints.
-   */
-  heroData: HeroData;
-}
-
-/**
- * Wrapper component containing the Navbar, Header, and Footer
- * @param {typeof children} children - React node placed in the main element
- * @param {HeroContext} heroData - Data for the hero section
- */
-const Layout: React.FC<LayoutProps> = ({children, heroData}) => (
-  <HeroContext.Provider value={heroData}>
-    <Box
-      textAlign="center"
-      // ? Having to add this overflow for the scroll reveal seems like a bug
-      overflowX="hidden"
-      sx={{'*': {outline: '1px solid red'}}}
-      layerStyle="layoutBase"
-    >
-      <NavBar />
-      <Header />
-      <Box as="main" sx={{'& > section': {layerStyle: 'mainSection'}}}>
-        {children}
-      </Box>
-      <Footer />
-    </Box>
-  </HeroContext.Provider>
-);
-
-export default Layout;
+export default Footer;
