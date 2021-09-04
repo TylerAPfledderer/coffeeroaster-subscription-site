@@ -17,9 +17,12 @@ import {
   useMediaQuery,
   VStack,
 } from '@chakra-ui/react';
+import MainSection from '../components/MainSection';
 
 const IndexPage: React.FC<Pick<PageProps, 'path'>> = ({path}) => {
-  /** Type checks the query of collection section data */
+  /**
+   * Signature for the query of image paths matching section data
+   */
   interface ImagesQuery {
     nodes: Array<{
       id: number;
@@ -27,6 +30,10 @@ const IndexPage: React.FC<Pick<PageProps, 'path'>> = ({path}) => {
       name: string;
     }>;
   }
+
+  /**
+   * Query signature for the section data that includes images
+   */
   interface SectionInfoJson {
     nodes: Array<{
       id: number;
@@ -37,6 +44,9 @@ const IndexPage: React.FC<Pick<PageProps, 'path'>> = ({path}) => {
     }>;
   }
 
+  /**
+   * Query signature of the JSON file containing the subcription section data
+   */
   interface SubDetailsJson {
     nodes: Array<{
       id: number;
@@ -46,6 +56,9 @@ const IndexPage: React.FC<Pick<PageProps, 'path'>> = ({path}) => {
     }>;
   }
 
+  /**
+   * Signature for any static query of just the publicURL path
+   */
   interface SingleFileURL {
     publicURL: string;
   }
@@ -151,7 +164,7 @@ const IndexPage: React.FC<Pick<PageProps, 'path'>> = ({path}) => {
     <Layout heroData={indexHero}>
       <Seo title="Home" />
       {/* == Collection Section == */}
-      <Box as="section">
+      <MainSection>
         <Heading
           bgGradient={{
             md: 'linear(gray.500 25%, transparent)',
@@ -209,9 +222,9 @@ const IndexPage: React.FC<Pick<PageProps, 'path'>> = ({path}) => {
             );
           })}
         </Stack>
-      </Box>
+      </MainSection>
       {/* == Feature section == */}
-      <Box as="section" color="white">
+      <MainSection color="white">
         <Box
           bg="darkGray.500"
           borderRadius="10px"
@@ -267,9 +280,9 @@ const IndexPage: React.FC<Pick<PageProps, 'path'>> = ({path}) => {
             })}
           </Stack>
         </Box>
-      </Box>
+      </MainSection>
       {/* == Subscription Details section == */}
-      <Box as="section" alignItems={{xl: 'flex-start !important'}}>
+      <MainSection alignItems={{xl: 'flex-start'}}>
         <Heading
           fontSize="1.5rem"
           lineHeight="32px"
@@ -342,7 +355,7 @@ const IndexPage: React.FC<Pick<PageProps, 'path'>> = ({path}) => {
         >
           Create your plan
         </Link>
-      </Box>
+      </MainSection>
     </Layout>
   );
 };

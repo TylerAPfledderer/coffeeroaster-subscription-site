@@ -34,13 +34,6 @@ export default extendTheme({
       maxHeight: '0',
       opacity: '0',
     },
-    mainSection: {
-      position: 'relative',
-      marginTop: '32',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-    },
   },
   components: {
     Heading: {
