@@ -207,13 +207,7 @@ const IndexPage: React.FC<Pick<PageProps, 'path'>> = ({path}) => {
               >
                 <Image src={picture?.publicURL} height="184px" />
                 <Box textAlign={{md: 'left', xl: 'center'}} marginLeft={{md: '36px', xl: 0}} maxWidth="255px">
-                  <Heading
-                    as="h3"
-                    size="2xl"
-                    textTransform="capitalize"
-                    fontSize={{xl: '1.777rem'}}
-                    mb={{base: '4', md: '6'}}
-                  >
+                  <Heading as="h3" size="xl" textTransform="capitalize" mb={{base: '4', md: '6'}}>
                     {title}
                   </Heading>
                   <Text>{description}</Text>
@@ -235,10 +229,8 @@ const IndexPage: React.FC<Pick<PageProps, 'path'>> = ({path}) => {
           width="full"
         />
         <Box px={{base: '6', md: '14'}} pt="16">
-          <VStack marginBottom="72px" maxWidth="540px" mx="auto">
-            <Heading size="2xl" marginBottom="6">
-              Why choose us?
-            </Heading>
+          <VStack spacing="6" marginBottom="72px" maxWidth="540px" mx="auto">
+            <Heading>Why choose us?</Heading>
             <Text>
               A large part of our role is choosing which particular coffees will be featured in our range.
               This means working closely with the best coffee growers to give you a more impactful experience
