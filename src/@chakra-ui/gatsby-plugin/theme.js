@@ -56,7 +56,7 @@ export default extendTheme({
         },
       },
       defaultProps: {
-        size: '3xl',
+        size: '2xl',
       },
     },
     Text: {
