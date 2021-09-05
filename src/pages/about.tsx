@@ -1,4 +1,4 @@
-import {Box, Flex, Heading, Text} from '@chakra-ui/layout';
+import {Box, Flex, Heading, Stack, Text, VStack} from '@chakra-ui/layout';
 import {Image} from '@chakra-ui/react';
 import MainSection from '../components/MainSection';
 import {graphql, PageProps, useStaticQuery} from 'gatsby';
@@ -14,6 +14,9 @@ const AboutPage: React.FC<PageProps> = () => {
     CommitmentHeaderMobileImg: {publicURL: commitmentHeaderMobile},
     CommitmentHeaderTabletImg: {publicURL: commitmentHeaderTablet},
     CommitmentHeaderDesktopImg: {publicURL: commitmentHeaderDesktop},
+    QualityHeaderDesktopImg: {publicURL: qualityHeaderDesktop},
+    QualityHeaderTabletImg: {publicURL: qualityHeaderTablet},
+    QualityHeaderMobileImg: {publicURL: qualityHeaderMobile},
   } = useStaticQuery(graphql`
     query AboutDataQuery {
       WhitecupMobileImg: file(name: {regex: "/whitecup-mobile/"}) {
@@ -32,6 +35,15 @@ const AboutPage: React.FC<PageProps> = () => {
         publicURL
       }
       CommitmentHeaderDesktopImg: file(name: {regex: "/image-commitment-desktop/"}) {
+        publicURL
+      }
+      QualityHeaderDesktopImg: file(name: {regex: "/image-quality-desktop/"}) {
+        publicURL
+      }
+      QualityHeaderTabletImg: file(name: {regex: "/image-quality-tablet/"}) {
+        publicURL
+      }
+      QualityHeaderMobileImg: file(name: {regex: "/image-quality-mobile/"}) {
         publicURL
       }
     }
@@ -91,8 +103,50 @@ const AboutPage: React.FC<PageProps> = () => {
           </Box>
         </Flex>
       </MainSection>
-      {/* TODO: Quality Statement section */}
-      <MainSection>Quality Statement</MainSection>
+      {/* Quality Statement section */}
+      <MainSection color="white">
+        <Box
+          bg="darkGray.500"
+          position="absolute"
+          zIndex="-2"
+          bottom="0"
+          width="full"
+          height={{base: 'calc(100% - 80px)', md: 'calc(100% - 160px)', xl: 'calc(100% - 88px)'}}
+          borderRadius="10px"
+        />
+        <Stack
+          paddingX={{base: '24px', md: '56px', xl: '88px'}}
+          paddingBottom={{base: '64px', xl: 0}}
+          width="full"
+          spacing="64px"
+          alignItems="center"
+          justifyContent="space-between"
+          direction={{base: 'column', xl: 'row-reverse'}}
+        >
+          <Image
+            src={qualityHeaderMobile}
+            srcSet={`${qualityHeaderDesktop} 445w,
+              ${qualityHeaderTablet} 281w,
+              ${qualityHeaderMobile} 654w`}
+            sizes="(min-width: 1280px) 445px,
+            (min-width: 768px) 281px,
+            654px"
+            borderRadius="8px"
+            width="full"
+            maxWidth={{base: '552px', xl: '445px'}}
+            marginBottom={{xl: '88px'}}
+          />
+          <VStack spacing="6" textAlign={{xl: 'left'}} alignItems={{xl: 'flex-start'}}>
+            <Heading>Uncompromised quality</Heading>
+            <Text>
+              Although we work with growers who pay close attention to all stages of harvest and processing,
+              we employ, on our end, a rigorous quality control program to avoid over-roasting or baking the
+              coffee dry. Every bag of coffee is tagged with a roast date and batch number. Our goal is to
+              roast consistent, user-friendly coffee, so that brewing is easy and enjoyable.
+            </Text>
+          </VStack>
+        </Stack>
+      </MainSection>
       {/* TODO: Headquarters list section
        * - Provide the list via JSON query
        * - Contains svg, name of country, street, city, state, and phone number
