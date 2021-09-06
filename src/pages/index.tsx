@@ -274,7 +274,7 @@ const IndexPage: React.FC<Pick<PageProps, 'path'>> = ({path}) => {
         </Box>
       </MainSection>
       {/* == Subscription Details section == */}
-      <MainSection alignItems={{xl: 'flex-start'}}>
+      <MainSection alignItems={{xl: 'flex-start'}} paddingX={{xl: '88px'}}>
         <Heading
           fontSize="1.5rem"
           lineHeight="32px"
