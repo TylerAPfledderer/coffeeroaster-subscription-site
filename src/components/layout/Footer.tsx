@@ -59,7 +59,7 @@ const Footer: React.FC = () => {
       marginTop={{base: '32', md: '36'}}
       marginBottom="72px"
       background="darkGray.500"
-      padding="54"
+      padding={{base: '54', xl: '48px 88px'}}
     >
       <Box width={{base: '216.92px', md: '235px'}} marginBottom={{base: '12', md: '6', xl: 0}}>
         <Logo hasDarkBg />
