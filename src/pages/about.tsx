@@ -1,5 +1,5 @@
-import {Box, Flex, Heading, Stack, Text, VStack} from '@chakra-ui/layout';
-import {Image} from '@chakra-ui/react';
+import {Box, Center, Flex, Heading, Link, List, Stack, Text, VStack} from '@chakra-ui/layout';
+import {Image, ListItem, useBreakpointValue} from '@chakra-ui/react';
 import MainSection from '../components/MainSection';
 import {graphql, PageProps, useStaticQuery} from 'gatsby';
 import React from 'react';
@@ -17,6 +17,8 @@ const AboutPage: React.FC<PageProps> = () => {
     QualityHeaderDesktopImg: {publicURL: qualityHeaderDesktop},
     QualityHeaderTabletImg: {publicURL: qualityHeaderTablet},
     QualityHeaderMobileImg: {publicURL: qualityHeaderMobile},
+    HeadquarterSVGs: {nodes: headquarterSVGs},
+    HeadquarterInfoJson: {nodes: headquarterInfo},
   } = useStaticQuery(graphql`
     query AboutDataQuery {
       WhitecupMobileImg: file(name: {regex: "/whitecup-mobile/"}) {
@@ -46,6 +48,23 @@ const AboutPage: React.FC<PageProps> = () => {
       QualityHeaderMobileImg: file(name: {regex: "/image-quality-mobile/"}) {
         publicURL
       }
+      HeadquarterSVGs: allFile(filter: {relativeDirectory: {eq: "about/headquarters"}}) {
+        nodes {
+          publicURL
+          name
+          id
+        }
+      }
+      HeadquarterInfoJson: allHeadquarterInfoJson {
+        nodes {
+          id
+          state
+          street
+          tel
+          city
+          country
+        }
+      }
     }
   `);
 
@@ -59,48 +78,52 @@ const AboutPage: React.FC<PageProps> = () => {
       xl: whitecupDesktop,
     },
   };
+
+  const commitmentImageSrc = useBreakpointValue({
+    base: commitmentHeaderMobile,
+    md: commitmentHeaderTablet,
+    lg: commitmentHeaderDesktop,
+  });
+  const qualityImageSrc = useBreakpointValue({
+    base: qualityHeaderMobile,
+    md: qualityHeaderTablet,
+    xl: qualityHeaderDesktop,
+  });
   return (
     <Layout heroData={aboutHero}>
       <Seo title="About Us" />
       {/* Commitment Statement section */}
-      <MainSection>
-        <Flex
-          paddingX={{md: '56px', xl: '88px'}}
-          flexDirection={{base: 'column', md: 'row'}}
-          justifyContent="space-between"
-          alignItems="inherit"
-          width="full"
+      <MainSection
+        paddingX={{lg: '48px', xl: '88px'}}
+        justifyContent="space-between"
+        flexDirection={{base: 'column', md: 'row'}}
+        sx={{'& > *': {flex: 1}}}
+      >
+        <Box
+          mb={{base: '48px', md: 0}}
+          mr={{md: '40px', xl: '128px'}}
+          maxWidth={{base: '327px', xl: '445px'}}
         >
-          <Image
-            src={commitmentHeaderMobile}
-            srcSet={`${commitmentHeaderDesktop} 445w,
-              ${commitmentHeaderTablet} 281w,
-              ${commitmentHeaderMobile} 654w`}
-            sizes="(min-width: 1440px) 445px,
-            (min-width: 768px) 281px,
-            654px"
-            borderRadius="8px"
-            fit="cover"
-            objectPosition="top center"
-            width="full"
-            maxWidth={{base: '327px', md: '281px', lg: '445px'}}
-            height={{base: '400px', md: '470px', lg: '520px'}}
-            mb={{base: '48px', md: 0}}
-            mr={{md: '40px', xl: '128px'}}
-          />
-          <Box textAlign={{xl: 'left'}}>
-            <Heading mb={{base: '10', md: '6'}}>Our Commitment</Heading>
-            <Text>
-              We’re built on a simple mission and a commitment to doing good along the way. We want to make it
-              easy for you to discover and brew the world’s best coffee at home. It all starts at the source.
-              To locate the specific lots we want to purchase, we travel nearly 60 days a year trying to
-              understand the challenges and opportunities in each of these places. We collaborate with
-              exceptional coffee growers and empower a global community of farmers through with well above
-              fair-trade benchmarks. We also offer training, support farm community initiatives, and invest in
-              coffee plant science. Curating only the finest blends, we roast each lot to highlight tasting
-              profiles distinctive to their native growing region.
-            </Text>
-          </Box>
+          <Image src={commitmentImageSrc} borderRadius="8px" objectFit="cover" width="full" />
+        </Box>
+        <Flex
+          flexDirection="column"
+          alignItems={{base: 'center', md: 'flex-start'}}
+          textAlign={{md: 'left'}}
+          minWidth={{md: '339px'}}
+          maxWidth="max-content"
+        >
+          <Heading mb={{base: '10', md: '6'}}>Our Commitment</Heading>
+          <Text>
+            We’re built on a simple mission and a commitment to doing good along the way. We want to make it
+            easy for you to discover and brew the world’s best coffee at home. It all starts at the source. To
+            locate the specific lots we want to purchase, we travel nearly 60 days a year trying to understand
+            the challenges and opportunities in each of these places. We collaborate with exceptional coffee
+            growers and empower a global community of farmers through with well above fair-trade benchmarks.
+            We also offer training, support farm community initiatives, and invest in coffee plant science.
+            Curating only the finest blends, we roast each lot to highlight tasting profiles distinctive to
+            their native growing region.
+          </Text>
         </Flex>
       </MainSection>
       {/* Quality Statement section */}
@@ -124,13 +147,7 @@ const AboutPage: React.FC<PageProps> = () => {
           direction={{base: 'column', xl: 'row-reverse'}}
         >
           <Image
-            src={qualityHeaderMobile}
-            srcSet={`${qualityHeaderDesktop} 445w,
-              ${qualityHeaderTablet} 281w,
-              ${qualityHeaderMobile} 654w`}
-            sizes="(min-width: 1280px) 445px,
-            (min-width: 768px) 281px,
-            654px"
+            src={qualityImageSrc}
             borderRadius="8px"
             width="full"
             maxWidth={{base: '552px', xl: '445px'}}
@@ -151,7 +168,75 @@ const AboutPage: React.FC<PageProps> = () => {
        * - Provide the list via JSON query
        * - Contains svg, name of country, street, city, state, and phone number
        */}
-      <MainSection>Headquarters</MainSection>
+      <MainSection paddingX={{xl: '88px'}}>
+        <Heading
+          fontSize="1.5rem"
+          lineHeight="32px"
+          color="gray.500"
+          marginBottom={{base: '72px', md: '60px'}}
+          alignSelf={{md: 'flex-start'}}
+        >
+          Our headquarters
+        </Heading>
+        <Stack
+          as={List}
+          spacing={{base: '88px', md: '72px'}}
+          direction={{base: 'column', md: 'row'}}
+          width="full"
+        >
+          {headquarterInfo.map(
+            ({
+              id,
+              country,
+              street,
+              city,
+              state,
+              tel,
+            }: {
+              id: number;
+              country: string;
+              street: string;
+              city: string;
+              state: string;
+              tel: string;
+            }) => {
+              const {publicURL} = headquarterSVGs.find(
+                ({name}: {name: string}) => name.replace(/-/, ' ') === country.toLowerCase()
+              );
+              return (
+                <VStack
+                  key={id}
+                  as={ListItem}
+                  spacing="12"
+                  alignItems={{base: 'center', md: 'flex-start'}}
+                  textAlign={{md: 'left'}}
+                  flex="1"
+                >
+                  <Center maxW="40px" flexBasis="48px">
+                    <Image src={publicURL} width="full" />
+                  </Center>
+                  <VStack spacing="6" alignItems="inherit">
+                    <Heading as="span" display="block">
+                      {country}
+                    </Heading>
+                    <Text>
+                      {street}
+                      <br />
+                      {city}
+                      <br />
+                      {state}
+                      <br />
+                      <Link href={`tel:${tel}`} isExternal>
+                        {tel}
+                      </Link>
+                    </Text>
+                  </VStack>
+                </VStack>
+              );
+            }
+          )}
+        </Stack>
+      </MainSection>
     </Layout>
   );
 };
