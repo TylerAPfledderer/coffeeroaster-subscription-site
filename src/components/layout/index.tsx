@@ -1,6 +1,6 @@
 import {Box} from '@chakra-ui/react';
 import React, {createContext} from 'react';
-import Header from '../Header';
+import Header from './Header';
 import Footer from './Footer';
 import NavBar from './NavBar';
 

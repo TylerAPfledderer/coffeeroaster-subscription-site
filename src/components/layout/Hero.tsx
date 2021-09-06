@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import {Box, Flex, Heading, Link, Text} from '@chakra-ui/react';
 import {Link as GatsbyLink} from 'gatsby';
-import {HeroContext} from './layout';
+import {HeroContext} from '.';
 
 const Hero: React.FC = () => {
   const {title, description, imageSet, pagePath} = useContext(HeroContext);

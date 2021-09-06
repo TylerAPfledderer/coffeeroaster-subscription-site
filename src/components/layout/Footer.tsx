@@ -1,6 +1,6 @@
 import {Box, Center, Flex, HStack, Icon, List, ListItem, Link, VisuallyHidden} from '@chakra-ui/react';
-import Logo from '../Logo';
-import NavList from '../NavList';
+import Logo from './Logo';
+import NavList from './NavList';
 import React from 'react';
 import uuid from 'react-uuid';
 
