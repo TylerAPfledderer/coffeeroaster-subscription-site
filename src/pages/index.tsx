@@ -25,9 +25,6 @@ const IndexPage: React.FC<Pick<PageProps, 'path'>> = ({path}) => {
     }
   `);
 
-  /*
-   * TODO: Create a Context in the layout component to pass the following data through to the hero component
-   */
   const indexHero = {
     pagePath: path,
     title: 'Great coffee made simple.',

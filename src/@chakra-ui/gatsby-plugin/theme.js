@@ -7,10 +7,10 @@ export default extendTheme({
       600: '#66D2CF',
       700: '#0c7471',
     },
-    'accent-primary': {
+    accentPrimary: {
       500: '#fdd6ba',
     },
-    'accent-secondary': {
+    accentSecondary: {
       500: '#F4F1EB',
     },
     gray: {500: '#83888f'},
@@ -95,6 +95,14 @@ export default extendTheme({
           _active: {
             backgroundColor: 'brand.700',
           },
+        },
+      },
+    },
+    Accordion: {
+      baseStyle: {
+        button: {
+          fontSize: 'clamp(1.44rem, 0.5vw + 1.3rem, 1.777rem)',
+          fontFamily: 'heading',
         },
       },
     },

@@ -3,7 +3,20 @@ import {graphql, Link as GatsbyLink, useStaticQuery} from 'gatsby';
 import React from 'react';
 import MainSection from './MainSection';
 
-const SubscriptionDetails: React.FC = () => {
+interface SubscriptionDetailsProps {
+  /**
+   * If this Component is rendered in the section page...
+   * - Certain elements will not be rendered
+   * - Different styles are used
+   */
+  onSubscribePage?: true;
+}
+
+const SubscriptionDetails: React.FC<SubscriptionDetailsProps> = ({onSubscribePage}) => {
+  /** Throw runtime error if the onSubscribePage prop is not used in the correct place */
+  if (onSubscribePage && !window.location.pathname.includes('/subscribe')) {
+    throw new Error('onSubscribePage styles and rendering are only for the Subscribe page!');
+  }
   interface SubscriptionDetailsData {
     /**
      * Query signature of the JSON file containing the subcription section data
@@ -31,18 +44,34 @@ const SubscriptionDetails: React.FC = () => {
       }
     }
   `);
+
   return (
-    <MainSection alignItems={{xl: 'flex-start'}} paddingX={{xl: '88px'}}>
-      <Heading
-        fontSize="1.5rem"
-        lineHeight="32px"
-        color="gray.500"
-        marginBottom={{base: '92px', md: '60px'}}
-        alignSelf={{md: 'flex-start'}}
+    <MainSection
+      alignItems={{xl: 'flex-start'}}
+      borderRadius="10px"
+      paddingX={{base: onSubscribePage && '24px', md: onSubscribePage && '42px', xl: '88px'}}
+      paddingY={onSubscribePage && '88px'}
+      marginX={{base: onSubscribePage && '-24px', md: onSubscribePage && '-42px', lg: 0}}
+      color={onSubscribePage ? 'white' : 'initial'}
+      background={onSubscribePage && 'darkGray.500'}
+    >
+      {!onSubscribePage && (
+        <Heading
+          fontSize="1.5rem"
+          lineHeight="32px"
+          color="gray.500"
+          marginBottom={{base: '92px', md: '60px'}}
+          alignSelf={{md: 'flex-start'}}
+        >
+          How it works
+        </Heading>
+      )}
+      <Stack
+        as={List}
+        spacing={{base: '72px', md: '0'}}
+        direction={{base: 'column', md: 'row'}}
+        alignItems={{base: 'center', md: 'normal'}}
       >
-        How it works
-      </Heading>
-      <Stack as={List} spacing={{base: '72px', md: '0'}} direction={{base: 'column', md: 'row'}}>
         {subDetails.map(({id, step, title, description}) => (
           <Flex
             as={ListItem}
@@ -51,7 +80,7 @@ const SubscriptionDetails: React.FC = () => {
             alignItems={{base: 'center', md: 'flex-start'}}
             textAlign={{md: 'left'}}
             position="relative"
-            paddingTop={{md: '72px'}}
+            paddingTop={{md: '72px', xl: '96px'}}
             maxWidth="380px"
             paddingRight={{xl: '84px !important'}}
             // Creates the circle in the upper left of the list item
@@ -59,7 +88,7 @@ const SubscriptionDetails: React.FC = () => {
               md: {
                 // eslint-disable-next-line quotes
                 content: `""`,
-                background: 'white',
+                background: onSubscribePage ? 'darkGray.500' : 'white',
                 boxSize: '8',
                 borderRadius: '50%',
                 border: '2px solid',
@@ -72,12 +101,12 @@ const SubscriptionDetails: React.FC = () => {
               md: {
                 paddingRight: '16px',
                 borderTop: '2px solid',
-                borderTopColor: 'accent-primary.500',
+                borderTopColor: 'accentPrimary.500',
               },
             }}
           >
             <Text
-              color="accent-primary.500"
+              color="accentPrimary.500"
               fontFamily="heading"
               fontSize="72px"
               lineHeight="1"
@@ -96,15 +125,17 @@ const SubscriptionDetails: React.FC = () => {
           </Flex>
         ))}
       </Stack>
-      <Link
-        as={GatsbyLink}
-        to="/subscribe"
-        mt={{base: '20', md: '6', xl: '72px'}}
-        alignSelf={{base: 'center', md: 'flex-start'}}
-        variant="primaryButton"
-      >
-        Create your plan
-      </Link>
+      {!onSubscribePage && (
+        <Link
+          as={GatsbyLink}
+          to="/subscribe"
+          mt={{base: '20', md: '6', xl: '72px'}}
+          alignSelf={{base: 'center', md: 'flex-start'}}
+          variant="primaryButton"
+        >
+          Create your plan
+        </Link>
+      )}
     </MainSection>
   );
 };
