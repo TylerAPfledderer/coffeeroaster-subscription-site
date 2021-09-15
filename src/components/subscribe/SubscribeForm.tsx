@@ -1,13 +1,11 @@
 import MainSection from '../MainSection';
-import React, {createContext} from 'react';
+import React from 'react';
 import {Accordion} from '@chakra-ui/accordion';
 import SubscribFormItem from './SubscribeFormItem';
 import {Box, HStack, VStack} from '@chakra-ui/layout';
 import SubscribeOrderSummary from './SubscribeOrderSummary';
 import {graphql, useStaticQuery} from 'gatsby';
 import {Button} from '@chakra-ui/react';
-
-export const FormNavContext = createContext(0);
 
 const SubscribeForm: React.FC = () => {
   interface AllFormOptionProps {
