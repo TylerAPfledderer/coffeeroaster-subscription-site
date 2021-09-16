@@ -13,7 +13,7 @@
     "@fontsource/barlow": "^4.5.0",
     "@fontsource/fraunces": "^4.5.0",
     "framer-motion": "^4.1.17",
-    "gatsby": "^3.13.0",
+    "gatsby": "^3.13.1",
     "gatsby-cli": "^3.13.0",
     "gatsby-plugin-gatsby-cloud": "^3.1.0",
     "gatsby-plugin-image": "^1.13.0",
@@ -62,12 +62,12 @@
     "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "start": "npm run develop",
+    "start": "yarn develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "jest",
     "lint": "eslint --ignore-path .gitignore . --ext ts --ext tsx --ext js --ext jsx",
-    "lint:fix": "npm run lint --fix"
+    "lint:fix": "yarn lint --fix"
   },
   "repository": {
     "type": "git",
