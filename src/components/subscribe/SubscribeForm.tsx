@@ -13,7 +13,6 @@ const SubscribeForm: React.FC = () => {
       nodes: Array<{
         id: string;
         name: string;
-        navName: string;
         radioGroupDetails: {
           groupName: string;
           radioOptions: Array<{
