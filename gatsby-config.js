@@ -65,7 +65,6 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-eslint',
       options: {
-        test: /\.js$|\.jsx$|\.ts$|\.tsx$/,
         exclude: [
           'node_modules',
           '.cache',
@@ -77,10 +76,6 @@ module.exports = {
           '__mocks__/*',
         ],
         stages: ['develop'],
-        options: {
-          emitWarning: true,
-          failOnError: false,
-        },
       },
     },
   ],
