@@ -48,7 +48,6 @@ const Layout: React.FC<LayoutProps> = ({children, heroData}) => (
       textAlign="center"
       // ? Having to add this overflow for the scroll reveal seems like a bug
       overflowX="hidden"
-      sx={{'*': {outline: '1px solid red'}}}
       layerStyle="layoutBase"
     >
       <NavBar />
