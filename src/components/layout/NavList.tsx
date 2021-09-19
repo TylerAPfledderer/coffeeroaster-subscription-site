@@ -1,13 +1,13 @@
 import React from 'react';
-import {Link as GatsbyLink} from 'gatsby';
-import {forwardRef, Link, List, ListItem, Stack, StackProps} from '@chakra-ui/react';
+import { Link as GatsbyLink } from 'gatsby';
+import { forwardRef, Link, List, ListItem, Stack, StackProps } from '@chakra-ui/react';
 
 interface NavLinkProps {
   name: string;
   path: string;
 }
 
-const NavListLink: React.FC<NavLinkProps> = ({name, path}) => (
+const NavListLink: React.FC<NavLinkProps> = ({ name, path }) => (
   <ListItem>
     <Link as={GatsbyLink} to={path} display="flex" justifyContent="center" alignItems="center" height="44px">
       {name}

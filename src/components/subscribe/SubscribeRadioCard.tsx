@@ -1,12 +1,16 @@
-import {Box, FormControl, Input, useRadio, UseRadioProps, VStack} from '@chakra-ui/react';
+import { Box, FormControl, Input, useRadio, UseRadioProps, VStack } from '@chakra-ui/react';
 import React from 'react';
 
 interface SubscribeRadioCardProps extends UseRadioProps {
   ariaHeadingLabel?: string;
 }
 
-const SubscribeRadioCard: React.FC<SubscribeRadioCardProps> = (props) => {
-  const {getInputProps, getCheckboxProps} = useRadio(props);
+const defaultProps: SubscribeRadioCardProps = {
+  ariaHeadingLabel: '',
+};
+
+const SubscribeRadioCard: React.FC<SubscribeRadioCardProps> = ({ ariaHeadingLabel, ...props }) => {
+  const { getInputProps, getCheckboxProps } = useRadio(props);
 
   /**
    * Callback return of the common html attributes associated with checkboxes and radios.
@@ -20,11 +24,11 @@ const SubscribeRadioCard: React.FC<SubscribeRadioCardProps> = (props) => {
   const checkboxProps = getCheckboxProps();
 
   return (
-    <Box as="label" margin="0" textAlign="left">
+    <Box as="label" margin="0" textAlign="left" flex="1">
       {/*
         // ! Do not use the 'FormLabel' component as it will override state used to evaluate if an input was checked
       */}
-      <FormControl as={Input} {...inputProps} aria-label={props.ariaHeadingLabel} />
+      <FormControl as={Input} {...inputProps} aria-label={ariaHeadingLabel} />
       <VStack
         {...checkboxProps}
         cursor="pointer"
@@ -58,5 +62,7 @@ const SubscribeRadioCard: React.FC<SubscribeRadioCardProps> = (props) => {
     </Box>
   );
 };
+
+SubscribeRadioCard.defaultProps = defaultProps;
 
 export default SubscribeRadioCard;

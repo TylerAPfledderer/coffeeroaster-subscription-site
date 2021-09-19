@@ -1,15 +1,13 @@
-import {AccordionItem, AccordionButton, AccordionIcon, AccordionPanel} from '@chakra-ui/accordion';
-import {FormControl} from '@chakra-ui/form-control';
-import {Box} from '@chakra-ui/layout';
+import { AccordionItem, AccordionButton, AccordionIcon, AccordionPanel, Box, FormControl } from '@chakra-ui/react';
 import React from 'react';
-import SubscribeRadioGroup, {SubscribeRadioGroupProps} from './SubscribeRadioGroup';
+import SubscribeRadioGroup, { RadioGroupProps } from './SubscribeRadioGroup';
 
 interface SubscribeFormItemProps {
   heading: string;
-  radioGroup: SubscribeRadioGroupProps;
+  radioGroup: RadioGroupProps;
 }
 
-const SubscribFormItem: React.FC<SubscribeFormItemProps> = ({heading, radioGroup}) => (
+const SubscribFormItem: React.FC<SubscribeFormItemProps> = ({ heading, radioGroup }) => (
   <AccordionItem border="none">
     <h3>
       <AccordionButton padding="0" justifyContent="space-between" color="gray.500">

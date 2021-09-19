@@ -1,11 +1,9 @@
-import MainSection from '../MainSection';
 import React from 'react';
-import {Accordion} from '@chakra-ui/accordion';
-import SubscribFormItem from './SubscribeFormItem';
-import {Box, HStack, VStack} from '@chakra-ui/layout';
+import { graphql, useStaticQuery } from 'gatsby';
+import { Button, Box, HStack, VStack, Accordion } from '@chakra-ui/react';
 import SubscribeOrderSummary from './SubscribeOrderSummary';
-import {graphql, useStaticQuery} from 'gatsby';
-import {Button} from '@chakra-ui/react';
+import SubscribFormItem from './SubscribeFormItem';
+import MainSection from '../MainSection';
 
 const SubscribeForm: React.FC = () => {
   interface AllFormOptionProps {
@@ -28,7 +26,7 @@ const SubscribeForm: React.FC = () => {
   // Query from json all data to create the radio input groups
   // for the subscription form
   const {
-    allFormOptionsJson: {nodes: formOptionDetails},
+    allFormOptionsJson: { nodes: formOptionDetails },
   }: AllFormOptionProps = useStaticQuery(graphql`
     query SubscribeFormQuery {
       allFormOptionsJson {
@@ -50,19 +48,12 @@ const SubscribeForm: React.FC = () => {
 
   return (
     <MainSection>
-      <HStack as="form" width="full" textAlign={{md: 'left'}} maxWidth="730px">
+      <HStack as="form" width="full" textAlign={{ md: 'left' }} maxWidth="730px">
         <Box>
-          <Accordion
-            as={VStack}
-            spacing="96px"
-            alignItems="normal"
-            allowToggle
-            allowMultiple
-            defaultIndex={[0]}
-          >
+          <Accordion as={VStack} spacing="96px" alignItems="normal" allowToggle allowMultiple defaultIndex={[0]}>
             {
               // Iterate the Form option data from query to the form item components
-              formOptionDetails.map(({id, name, radioGroupDetails}) => (
+              formOptionDetails.map(({ id, name, radioGroupDetails }) => (
                 <SubscribFormItem key={id} heading={name} radioGroup={radioGroupDetails} />
               ))
             }

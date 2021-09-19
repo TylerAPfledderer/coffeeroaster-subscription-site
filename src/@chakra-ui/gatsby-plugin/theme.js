@@ -1,4 +1,4 @@
-import {extendTheme} from '@chakra-ui/react';
+import { extendTheme } from '@chakra-ui/react';
 
 export default extendTheme({
   colors: {
@@ -13,8 +13,8 @@ export default extendTheme({
     accentSecondary: {
       500: '#F4F1EB',
     },
-    gray: {500: '#83888f'},
-    darkGray: {500: '#333d4b'},
+    gray: { 500: '#83888f' },
+    darkGray: { 500: '#333d4b' },
   },
   fonts: {
     heading: 'Fraunces,"Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif',
@@ -22,7 +22,7 @@ export default extendTheme({
   },
   layerStyles: {
     layoutBase: {
-      paddingX: {base: '6', md: '42px', lg: '80px'},
+      paddingX: { base: '6', md: '42px', lg: '80px' },
       maxWidth: '1440px',
       marginX: 'auto',
     },

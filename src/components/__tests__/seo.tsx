@@ -1,8 +1,7 @@
 import React from 'react';
-import {render} from '../../utils/test-utils';
-import Seo from '../seo';
-
 import Helmet from 'react-helmet';
+import { render } from '../../utils/test-utils';
+import Seo from '../seo';
 
 describe('SEO component', () => {
   it('renders correctly', () => {
@@ -12,7 +11,7 @@ describe('SEO component', () => {
 
     const SEORender = render(<Seo title="All Posts" />);
 
-    const {title, metaTags} = Helmet.peek();
+    const { title, metaTags } = Helmet.peek();
 
     expect(title).toBe(mockTitle);
     expect(metaTags[0].content).toBe(mockDescription);

@@ -1,23 +1,23 @@
-import React, {useContext} from 'react';
-import {Box, Flex, Heading, Link, Text} from '@chakra-ui/react';
-import {Link as GatsbyLink} from 'gatsby';
-import {HeroContext} from '.';
+import React, { useContext } from 'react';
+import { Box, Flex, Heading, Link, Text } from '@chakra-ui/react';
+import { Link as GatsbyLink } from 'gatsby';
+import { HeroContext } from '.';
 
 const Hero: React.FC = () => {
-  const {title, description, imageSet, pagePath} = useContext(HeroContext);
+  const { title, description, imageSet, pagePath } = useContext(HeroContext);
 
   return (
     <Flex
       as="section"
       direction="column"
-      alignItems={{base: 'center', md: 'flex-start'}}
+      alignItems={{ base: 'center', md: 'flex-start' }}
       bgImage={imageSet}
       bgPos="right"
       bgSize="cover"
       bgRepeat="no-repeat"
       color="white"
-      textAlign={{md: 'left'}}
-      padding={{base: '100px 24px', md: '100px 56px', xl: '100px 88px'}}
+      textAlign={{ md: 'left' }}
+      padding={{ base: '100px 24px', md: '100px 56px', xl: '100px 88px' }}
       borderRadius="10px"
       marginTop="76px"
     >

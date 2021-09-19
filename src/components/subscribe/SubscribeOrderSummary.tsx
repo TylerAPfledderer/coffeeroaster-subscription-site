@@ -1,8 +1,7 @@
-import {Box, BoxProps, Heading, Text} from '@chakra-ui/layout';
-import {chakra, forwardRef} from '@chakra-ui/system';
 import React from 'react';
+import { chakra, forwardRef, Box, BoxProps, Heading, Text } from '@chakra-ui/react';
 
-const OrderHighlight: React.FC = ({children}) => <chakra.span color="brand.500">{children}</chakra.span>;
+const OrderHighlight: React.FC = ({ children }) => <chakra.span color="brand.500">{children}</chakra.span>;
 
 const SubscribeOrderSummary = forwardRef<BoxProps, 'div'>((props, ref) => {
   const drinkingStyle = 'Filter';
@@ -16,8 +15,8 @@ const SubscribeOrderSummary = forwardRef<BoxProps, 'div'>((props, ref) => {
       color="white"
       textAlign="left"
       paddingTop="32px"
-      paddingBottom={{base: '42px'}}
-      paddingX={{base: '24px', md: '44px'}}
+      paddingBottom={{ base: '42px' }}
+      paddingX={{ base: '24px', md: '44px' }}
       borderRadius="10px"
       {...props}
       ref={ref}

@@ -1,3 +1,9 @@
+import path from 'path';
+// Get paths of Gatsby's required rules, which as of writing is located at:
+// https://github.com/gatsbyjs/gatsby/tree/fbfe3f63dec23d279a27b54b4057dd611dce74bb/packages/
+// gatsby/src/utils/eslint-rules
+const gatsbyRequiredRules = path.join(process.cwd(), 'node_modules', 'gatsby', 'dist', 'utils', 'eslint-rules');
+
 module.exports = {
   flags: {
     DEV_SSR: false,
@@ -49,7 +55,8 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-scroll-reveal',
       options: {
-        threshold: 0.5, // Percentage of an element's area that needs to be visible to launch animation
+        // Percentage of an element's area that needs to be visible to launch animation
+        threshold: 0.5,
         once: true, // Defines if animation needs to be launched once
         disable: false, // Flag for disabling animations
 
@@ -65,17 +72,14 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-eslint',
       options: {
-        exclude: [
-          'node_modules',
-          '.cache',
-          'public',
-          'gatsby-config.js',
-          'jest-preprocess.js',
-          'jest.config.js',
-          'loadershim.js',
-          '__mocks__/*',
-        ],
+        // Gatsby required rules directory
+        rulePaths: [gatsbyRequiredRules],
+        // Default settings that may be ommitted or customized
         stages: ['develop'],
+        extensions: ['js', 'jsx', 'ts', 'tsx'],
+        exclude: ['node_modules', 'bower_components', '.cache', 'public'],
+        // Any additional eslint-webpack-plugin options below
+        // ...
       },
     },
   ],

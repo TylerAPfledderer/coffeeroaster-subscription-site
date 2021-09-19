@@ -1,11 +1,15 @@
-import {Icon} from '@chakra-ui/react';
+import { Icon } from '@chakra-ui/react';
 import React from 'react';
 
 interface LogoProps {
   hasDarkBg?: boolean;
 }
 
-const Logo: React.FC<LogoProps> = ({hasDarkBg}) => (
+const defaultProps: LogoProps = {
+  hasDarkBg: false,
+};
+
+const Logo: React.FC<LogoProps> = ({ hasDarkBg }) => (
   <Icon viewBox="0 0 237 27" boxSize="full" display="inherit">
     {/* Setting display="inherit" removes the extra vertical space within the parent caused  by setting the default value to 'inline'. 'inherit' converts the value to 'block' which comes from the parent. */}
     <g fillRule="nonzero" fill="none">
@@ -21,5 +25,7 @@ const Logo: React.FC<LogoProps> = ({hasDarkBg}) => (
     </g>
   </Icon>
 );
+
+Logo.defaultProps = defaultProps;
 
 export default Logo;

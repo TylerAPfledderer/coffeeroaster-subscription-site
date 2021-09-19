@@ -1,8 +1,8 @@
 import React from 'react';
-import {render, screen} from 'test-utils';
+import { render, screen } from 'test-utils';
 import userEvent from '@testing-library/user-event';
 
-import Layout from '../';
+import Layout from '..';
 
 /**
  * Mock data for pages where the hero section does receive
@@ -25,7 +25,7 @@ describe('Layout', () => {
     // eslint-disable-next-line implicit-arrow-linebreak
     render(<Layout heroData={mockDataWithPath} />);
 
-  const {rerender, container} = renderLayout();
+  const { rerender, container } = renderLayout();
 
   it('renders correctly', () => {
     expect(container).toMatchSnapshot();

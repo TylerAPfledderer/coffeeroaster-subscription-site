@@ -1,8 +1,8 @@
-import {Box, Center, Flex, HStack, Icon, List, ListItem, Link, VisuallyHidden} from '@chakra-ui/react';
-import Logo from './Logo';
-import NavList from './NavList';
+import { Box, Center, Flex, HStack, Icon, List, ListItem, Link, VisuallyHidden } from '@chakra-ui/react';
 import React from 'react';
 import uuid from 'react-uuid';
+import Logo from './Logo';
+import NavList from './NavList';
 
 /**
  * Footer landmark render through the layout on each page
@@ -54,26 +54,26 @@ const Footer: React.FC = () => {
   return (
     <Flex
       as="footer"
-      direction={{base: 'column', xl: 'row'}}
+      direction={{ base: 'column', xl: 'row' }}
       alignItems="center"
-      marginTop={{base: '32', md: '36'}}
+      marginTop={{ base: '32', md: '36' }}
       marginBottom="72px"
       background="darkGray.500"
-      padding={{base: '54', xl: '48px 88px'}}
+      padding={{ base: '54', xl: '48px 88px' }}
     >
-      <Box width={{base: '216.92px', md: '235px'}} marginBottom={{base: '12', md: '6', xl: 0}}>
+      <Box width={{ base: '216.92px', md: '235px' }} marginBottom={{ base: '12', md: '6', xl: 0 }}>
         <Logo hasDarkBg />
       </Box>
       <NavList
         fontWeight="bold"
         color="gray.500"
-        marginBottom={{base: '6', md: '12', xl: 0}}
-        direction={{base: 'column', md: 'row'}}
-        spacing={{base: '2', md: '8'}}
-        marginLeft={{xl: '48px'}}
+        marginBottom={{ base: '6', md: '12', xl: 0 }}
+        direction={{ base: 'column', md: 'row' }}
+        spacing={{ base: '2', md: '8' }}
+        marginLeft={{ xl: '48px' }}
       />
-      <HStack as={List} justifyContent="center" marginLeft={{xl: 'auto'}} aria-label="Social Links">
-        {socialLinks.map(({name, svgPath, id}) => {
+      <HStack as={List} justifyContent="center" marginLeft={{ xl: 'auto' }} aria-label="Social Links">
+        {socialLinks.map(({ name, svgPath, id }) => {
           /**
            * Styling for the Social Links when the user either
            * hovers over or tabs to the link

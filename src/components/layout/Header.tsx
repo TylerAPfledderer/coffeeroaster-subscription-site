@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box} from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import Hero from './Hero';
 
 const Header: React.FC = () => (

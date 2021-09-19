@@ -1,5 +1,5 @@
-import {Box} from '@chakra-ui/react';
-import React, {createContext} from 'react';
+import { Box } from '@chakra-ui/react';
+import React, { createContext } from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import NavBar from './NavBar';
@@ -42,7 +42,7 @@ interface LayoutProps {
  * @param {typeof children} children - React node placed in the main element
  * @param {HeroContext} heroData - Data for the hero section
  */
-const Layout: React.FC<LayoutProps> = ({children, heroData}) => (
+const Layout: React.FC<LayoutProps> = ({ children, heroData }) => (
   <HeroContext.Provider value={heroData}>
     <Box
       textAlign="center"
@@ -52,7 +52,7 @@ const Layout: React.FC<LayoutProps> = ({children, heroData}) => (
     >
       <NavBar />
       <Header />
-      <Box as="main" sx={{'& > section': {layerStyle: 'mainSection'}}}>
+      <Box as="main" sx={{ '& > section': { layerStyle: 'mainSection' } }}>
         {children}
       </Box>
       <Footer />
