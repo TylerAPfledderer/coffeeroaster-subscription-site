@@ -13,12 +13,12 @@ interface SubscriptionDetailsProps {
 }
 
 const defaultProps: SubscriptionDetailsProps = {
-  onSubscribePage: true,
+  onSubscribePage: false,
 };
 
 const SubscriptionDetails: React.FC<SubscriptionDetailsProps> = ({ onSubscribePage }) => {
   /** Throw runtime error if the onSubscribePage prop is not used in the correct place */
-  if (onSubscribePage && !window.location.pathname.includes('/subscribe')) {
+  if (onSubscribePage && window.location.pathname !== '/subscribe') {
     throw new Error('onSubscribePage styles and rendering are only for the Subscribe page!');
   }
   interface SubscriptionDetailsData {
