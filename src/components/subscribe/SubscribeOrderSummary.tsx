@@ -1,14 +1,29 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { chakra, forwardRef, Box, BoxProps, Heading, Text } from '@chakra-ui/react';
+import { FormValuesContext } from './SubscribeForm';
 
 const OrderHighlight: React.FC = ({ children }) => <chakra.span color="brand.500">{children}</chakra.span>;
 
 const SubscribeOrderSummary = forwardRef<BoxProps, 'div'>((props, ref) => {
-  const drinkingStyle = 'Filter';
-  const coffeeType = 'Decaf';
-  const coffeeSize = '250g';
-  const beanStyle = 'Cafetiare';
-  const deliveryInterval = 'Every week';
+  const { currInputVals } = useContext(FormValuesContext);
+
+  /**
+   * Function to convert a string in kebab case to a sentence case string
+   * @param {string} str - string to convert
+   * @return string = the string with the first letter capitalized and spaces
+   */
+  const kebabToNormalString = (str: string) => {
+    const capitalized = str.charAt(0).toUpperCase() + str.slice(1);
+    return capitalized.replace(/-/g, ' ');
+  };
+
+  // The values displayed in the order summary
+  const drinkingStyle = kebabToNormalString(currInputVals['drinking-style']);
+  const coffeeType = kebabToNormalString(currInputVals['coffee-type']);
+  const coffeeSize = kebabToNormalString(currInputVals['coffee-size']);
+  const beanStyle = kebabToNormalString(currInputVals['bean-style']);
+  const deliveryInterval = kebabToNormalString(currInputVals['delivery-interval']);
+
   return (
     <Box
       background="darkGray.500"
