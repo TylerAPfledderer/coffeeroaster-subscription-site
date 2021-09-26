@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { useRadioGroup, Text, Heading, Stack } from '@chakra-ui/react';
 import SubscribeRadioCard from './SubscribeRadioCard';
 import { currValOptions, FormValuesContext } from './SubscribeForm';
+import { toKebabCase } from '../../utils/functions';
 
 export interface RadioGroupProps {
   radioOptions: Array<{
@@ -16,19 +17,19 @@ type SubscribeRadioGroupProps = RadioGroupProps;
 /**
  * Convert a normal string to kebab-case
  */
-const toKebabCase = (str: string) => str?.toLowerCase().replace(/[' ']+/g, '-');
 
 const SubscribeRadioGroup: React.FC<SubscribeRadioGroupProps> = ({ groupName, radioOptions }) => {
   const { currInputVals, setCurrInputVals } = useContext(FormValuesContext);
 
   const { getRootProps, getRadioProps } = useRadioGroup({
     name: groupName,
-    defaultValue: toKebabCase(currInputVals[groupName]),
     onChange: (nextValue) =>
       setCurrInputVals((prevState) => ({
         ...prevState,
         [groupName]: nextValue,
       })),
+    // We are in controlled mode because this value can be reset by the user (via "Checkout")
+    value: toKebabCase(currInputVals[groupName]),
   });
 
   const group = getRootProps();
