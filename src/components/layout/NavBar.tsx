@@ -13,7 +13,7 @@ const NavBar: React.FC = () => {
   const { isOpen: isMenuOpen, onToggle: setMenuToggle } = useDisclosure();
   const [isGreaterThan768] = useMediaQuery('(min-width: 768px)');
   return (
-    <Box position="fixed" top="0" left="0" zIndex="sticky" width="full">
+    <Box position="fixed" top="0" left="0" zIndex="docked" width="full">
       <Flex justifyContent="space-between" alignItems="center" py="4" bg="white" layerStyle="layoutBase">
         <Box w={{ base: '162px', md: '235px' }}>
           <Logo />
