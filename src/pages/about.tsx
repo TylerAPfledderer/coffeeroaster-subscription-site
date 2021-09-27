@@ -208,7 +208,7 @@ const AboutPage: React.FC<PageProps> = () => {
                 textAlign={{ md: 'left' }}
                 flex="1"
               >
-                <Center maxW="40px" flexBasis="48px">
+                <Center maxW="40px" flexBasis="48px" w="full">
                   <Image src={publicURL} width="full" />
                 </Center>
                 <VStack spacing="6" alignItems="inherit">
