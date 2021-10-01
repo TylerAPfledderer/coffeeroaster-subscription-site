@@ -1,5 +1,5 @@
-import { Box, FormControl, Input, useRadio, UseRadioProps, VStack } from '@chakra-ui/react';
 import React from 'react';
+import { Box, useRadio, UseRadioProps, VStack } from '@chakra-ui/react';
 
 interface SubscribeRadioCardProps extends UseRadioProps {
   ariaHeadingLabel?: string;
@@ -28,7 +28,7 @@ const SubscribeRadioCard: React.FC<SubscribeRadioCardProps> = ({ ariaHeadingLabe
       {/*
         // ! Do not use the 'FormLabel' component as it will override state used to evaluate if an input was checked
       */}
-      <FormControl as={Input} {...inputProps} aria-label={ariaHeadingLabel} />
+      <input {...inputProps} aria-label={ariaHeadingLabel} />
       <VStack
         {...checkboxProps}
         cursor="pointer"
