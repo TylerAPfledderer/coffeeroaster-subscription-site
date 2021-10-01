@@ -8,13 +8,11 @@ interface SubscriptionDetailsProps {
    * If this Component is rendered in the section page...
    * - Certain elements will not be rendered
    * - Different styles are used
+   * - Marked as strictly `true` or `undefined` to prevent errors with short circuit evaluations
+   *   in Chakra props
    */
-  onSubscribePage?: boolean;
+  onSubscribePage?: true | undefined;
 }
-
-const defaultProps: SubscriptionDetailsProps = {
-  onSubscribePage: false,
-};
 
 const SubscriptionDetails: React.FC<SubscriptionDetailsProps> = ({ onSubscribePage }) => {
   /** Throw runtime error if the onSubscribePage prop is not used in the correct place */
@@ -49,31 +47,15 @@ const SubscriptionDetails: React.FC<SubscriptionDetailsProps> = ({ onSubscribePa
     }
   `);
 
-  const subPagePaddingX = onSubscribePage
-    ? {
-        base: '24px',
-        md: '42px',
-      }
-    : '';
-  const subPagePaddingY = onSubscribePage ? '88px' : '';
-  const subPageMarginX = onSubscribePage
-    ? {
-        base: '-24px',
-        md: '-42px',
-      }
-    : '';
-  const subPageColor = onSubscribePage ? 'white' : 'initial';
-  const subPageBackground = onSubscribePage ? 'darkGray.500' : '';
-
   return (
     <MainSection
       alignItems={{ xl: 'flex-start' }}
       borderRadius="10px"
-      paddingX={{ ...subPagePaddingX, xl: '88px' }}
-      paddingY={subPagePaddingY}
-      marginX={{ ...subPageMarginX, lg: 0 }}
-      color={subPageColor}
-      background={subPageBackground}
+      paddingX={{ ...(onSubscribePage && { base: '24px', md: '42px' }), xl: '88px' }}
+      paddingY={onSubscribePage && '88px'}
+      marginX={{ ...(onSubscribePage && { base: '-24px', md: '-42px' }), lg: 0 }}
+      color={onSubscribePage && 'white'}
+      background={onSubscribePage && 'darkGray.500'}
     >
       {!onSubscribePage && (
         <Heading
@@ -159,7 +141,5 @@ const SubscriptionDetails: React.FC<SubscriptionDetailsProps> = ({ onSubscribePa
     </MainSection>
   );
 };
-
-SubscriptionDetails.defaultProps = defaultProps;
 
 export default SubscriptionDetails;
