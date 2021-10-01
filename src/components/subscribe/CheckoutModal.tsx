@@ -12,6 +12,7 @@ import {
   Show,
   SpaceProps,
   Text,
+  useToast,
   VisuallyHidden,
 } from '@chakra-ui/react';
 import useChakraBreakpointComponent from '../../hooks/useChakraBreakpointComponent';
@@ -23,6 +24,8 @@ const CheckoutModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isO
   const { formOptionDetails, currInputVals, resetInputVals } = useContext(FormValuesContext);
 
   const [deliveryPrice, setDeliveryPrice] = useState<string | undefined>('0');
+
+  const confirmationToast = useToast();
 
   // Update visual rendering of the price
   // when the 'delivery-interval' value changes
@@ -59,6 +62,13 @@ const CheckoutModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isO
   const handleSubmitCheckout = () => {
     resetInputVals();
     onClose();
+    confirmationToast({
+      title: 'Order Confirmed!',
+      description: 'Your order has been placed and will be delivered shortly.',
+      status: 'success',
+      duration: 5000,
+      isClosable: true,
+    });
   };
 
   return (
