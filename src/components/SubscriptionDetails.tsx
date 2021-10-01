@@ -1,6 +1,6 @@
 import { Flex, Heading, Link, List, ListItem, Stack, Text } from '@chakra-ui/react';
 import { graphql, Link as GatsbyLink, useStaticQuery } from 'gatsby';
-import React from 'react';
+import React, { useEffect } from 'react';
 import MainSection from './MainSection';
 
 interface SubscriptionDetailsProps {
@@ -20,10 +20,12 @@ interface SubscriptionDetailsProps {
  * @param {true | undefined} props.onSubscribePage - Used for styling changes if the component is rendered on the subscribe page
  */
 const SubscriptionDetails: React.FC<SubscriptionDetailsProps> = ({ onSubscribePage }) => {
-  /** Throw runtime error if the onSubscribePage prop is not used in the correct place */
-  if (onSubscribePage && window.location.pathname !== '/subscribe') {
-    throw new Error('onSubscribePage styles and rendering are only for the Subscribe page!');
-  }
+  useEffect(() => {
+    /** Throw runtime error if the onSubscribePage prop is not used in the correct place */
+    if (onSubscribePage && window.location.pathname !== '/subscribe') {
+      throw new Error('onSubscribePage styles and rendering are only for the Subscribe page!');
+    }
+  }, []);
   interface SubscriptionDetailsData {
     /**
      * Query signature of the JSON file containing the subcription section data
