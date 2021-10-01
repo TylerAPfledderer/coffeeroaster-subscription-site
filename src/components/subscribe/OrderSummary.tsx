@@ -3,6 +3,9 @@ import { chakra, forwardRef, Heading, HeadingProps, Text } from '@chakra-ui/reac
 import { FormValuesContext } from './SubscribeForm';
 import { kebabToNormalString } from '../../utils/functions';
 
+/**
+ * Reusable Support wrapper for providing a highlighting style to the dynamic content rendered in the `SubscribeOrderSummary` component
+ */
 const OrderHighlight: React.FC = ({ children }) => <chakra.span color="brand.500">{children}</chakra.span>;
 /**
  * Component that renders the details of the subscription order.

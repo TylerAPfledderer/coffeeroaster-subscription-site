@@ -53,6 +53,11 @@ export const FormValuesContext = createContext<FormValuesCtxProps>({
   },
 });
 
+/**
+ * Form for the subscription options
+ *
+ * Pulls JSON Data via static query that provides the content for each group of options
+ */
 const SubscribeForm: React.FC = () => {
   // Query from json all data to create the radio input groups
   // for the subscription form

@@ -15,9 +15,10 @@ export interface RadioGroupProps {
 type SubscribeRadioGroupProps = RadioGroupProps;
 
 /**
- * Convert a normal string to kebab-case
+ * Component rendering each group of radios in the subscription form
+ * @param {string} groupName - name of the group of radios
+ * @param {RadioGroupProps.radioOptions} radioOptions - array of radio options to build each radio card
  */
-
 const SubscribeRadioGroup: React.FC<SubscribeRadioGroupProps> = ({ groupName, radioOptions }) => {
   const { currInputVals, setCurrInputVals } = useContext(FormValuesContext);
 

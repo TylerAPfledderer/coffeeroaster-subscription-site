@@ -20,6 +20,11 @@ import OrderSummary from './OrderSummary';
 import { FormValuesContext } from './SubscribeForm';
 import { toKebabCase } from '../../utils/functions';
 
+/**
+ * Component to display a modal with the order summary and a button to confirm the order
+ *
+ * For the purposes of this project, the button on click will only reset the form values and state
+ */
 const CheckoutModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen, onClose }) => {
   const { formOptionDetails, currInputVals, resetInputVals } = useContext(FormValuesContext);
 

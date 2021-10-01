@@ -7,6 +7,11 @@ interface SubscribeFormItemProps {
   radioGroup: RadioGroupProps;
 }
 
+/**
+ * Renders an accordion item with a heading and a radio group for the subscription form.
+ * @param {string} heading - The heading of the accordion item.
+ * @param {RadioGroupProps} radioGroup - The radio group for the accordion item.
+ */
 const SubscribFormItem: React.FC<SubscribeFormItemProps> = ({ heading, radioGroup }) => (
   <AccordionItem border="none">
     <h3>

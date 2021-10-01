@@ -4,6 +4,11 @@ import React from 'react';
 import { ImagesQuery, SectionInfoJson } from 'types/interfaces';
 import MainSection from '../MainSection';
 
+/**
+ * Stateless component that renders the collection of coffee
+ *
+ * Pulls JSON Data and images via static query that provide the content
+ */
 const CollectionSection: React.FC = () => {
   // For use with collectionInfo and featureInfo scroll reveals
   const [isLessThan1280] = useMediaQuery('(max-width: 1280px)');

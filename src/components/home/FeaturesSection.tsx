@@ -4,6 +4,12 @@ import React from 'react';
 import { ImagesQuery, SectionInfoJson } from 'types/interfaces';
 import MainSection from '../MainSection';
 
+/**
+ * Stateless component that renders features of the subscription platform
+ *
+ * Pulls JSON Data and images via static query that provide the content
+ */
+
 const FeaturesSection: React.FC = () => {
   // For use with collectionInfo and featureInfo scroll reveals
   const [isLessThan1280] = useMediaQuery('(max-width: 1280px)');

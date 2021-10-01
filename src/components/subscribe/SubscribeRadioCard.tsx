@@ -9,6 +9,11 @@ const defaultProps: SubscribeRadioCardProps = {
   ariaHeadingLabel: '',
 };
 
+/**
+ * The individual custom radio rendered for each group in the Subscription form
+ * @param {string} ariaHeadingLabel - The label for the radios that need better detail for screen readers
+ * @param ...props - Remaining props passed to the `useRadio` hook
+ */
 const SubscribeRadioCard: React.FC<SubscribeRadioCardProps> = ({ ariaHeadingLabel, ...props }) => {
   const { getInputProps, getCheckboxProps } = useRadio(props);
 
