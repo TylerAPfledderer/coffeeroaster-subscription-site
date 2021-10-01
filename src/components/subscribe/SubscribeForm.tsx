@@ -78,14 +78,12 @@ const SubscribeForm: React.FC = () => {
     }
   `);
 
-  // eslint-disable-next-line arrow-body-style
-  const reduceDefaultOptionNames = () => {
-    // Reduce the array of form options down to an object with the groupName as the key and the first radioOptions' name as the value
-    return formOptionDetails.reduce<Record<string, string>>((group, { radioGroupDetails }) => {
+  // Reduce the array of form options down to an object with the groupName as the key and the first radioOptions' name as the value
+  const reduceDefaultOptionNames = () =>
+    formOptionDetails.reduce<Record<string, string>>((group, { radioGroupDetails }) => {
       const { groupName, radioOptions } = radioGroupDetails;
       return { ...group, [groupName]: toKebabCase(radioOptions[0].name) };
     }, {});
-  };
 
   /**
    * State for the currently selected values in each radio group, stored in local storage
