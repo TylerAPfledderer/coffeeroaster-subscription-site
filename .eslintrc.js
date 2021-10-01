@@ -40,5 +40,6 @@ module.exports = {
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
     'react/jsx-props-no-spreading': 'off',
     'jest/expect-expect': ['error', { assertFunctionNames: ['isMenuClosed', 'isMenuOpen', 'expect'] }],
+    'react/require-default-props': 'off',
   },
 };
