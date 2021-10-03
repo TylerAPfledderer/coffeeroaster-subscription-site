@@ -1,6 +1,6 @@
 {
   "name": "coffecoaster-subscription-gatsby",
-  "private": true,
+  "private": false,
   "description": "Site built in Gatsby Demonstrating Subscription Sign-up Functionality",
   "version": "0.1.0",
   "author": "Tyler Pfledderer",
@@ -10,8 +10,6 @@
     "@chakra-ui/react": "^1.6.7",
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
-    "@fontsource/barlow": "^4.5.0",
-    "@fontsource/fraunces": "^4.5.0",
     "framer-motion": "^4.1.17",
     "gatsby": "^3.13.1",
     "gatsby-cli": "^3.13.0",
@@ -79,8 +77,7 @@
     "test": "jest",
     "lint": "eslint --ignore-path .gitignore . --ext ts --ext tsx --ext js --ext jsx",
     "lint:fix": "yarn lint --fix",
-    "predeploy": "yarn build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gatsby build --prefix-paths && gh-pages -d public"
   },
   "repository": {
     "type": "git",
