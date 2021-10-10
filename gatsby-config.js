@@ -10,11 +10,11 @@ module.exports = {
   },
   pathPrefix: '/coffeeroaster-subscription-site',
   siteMetadata: {
-    title: 'Gatsby Default Starter',
+    title: 'Coffeeroasters',
     description:
-      'Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.',
-    author: '@gatsbyjs',
-    siteUrl: 'https://gatsbystarterdefaultsource.gatsbyjs.io/',
+      'Start your mornings with the world’s best coffees. Try our expertly curated artisan coffees from our best roasters delivered directly to your door, at your schedule.',
+    author: 'Tyler Pfledderer',
+    siteUrl: 'https://coffeeroastersub.gatsbyjs.io/',
   },
   plugins: [
     'gatsby-plugin-react-helmet',
