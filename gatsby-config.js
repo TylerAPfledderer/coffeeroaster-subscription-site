@@ -5,6 +5,9 @@ const path = require('path');
 const gatsbyRequiredRules = path.join(process.cwd(), 'node_modules', 'gatsby', 'dist', 'utils', 'eslint-rules');
 
 module.exports = {
+  flags: {
+    DEV_SSR: false,
+  },
   pathPrefix: '/coffeeroaster-subscription-site',
   siteMetadata: {
     title: 'Gatsby Default Starter',
