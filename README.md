@@ -1,105 +1,78 @@
-<!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
-<p align="center">
-  <a href="https://www.gatsbyjs.com">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby's default starter
-</h1>
+# Frontend Mentor - Coffeeroasters subscription site solution
 
-Kick off your project with this default boilerplate. This starter ships with the main Gatsby configuration files you might need to get up and running blazing fast with the blazing fast app generator for React.
+This project comes from the [Coffeeroasters subscription site challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/coffeeroasters-subscription-site-5Fc26HVY6). It has been altered to provide improved interpretation of vertical rhythm and typescales principles in the design.
 
-_Have another more specific idea? You may want to check out our vibrant collection of [official and community-created starters](https://www.gatsbyjs.com/docs/gatsby-starters/)._
+## Table of contents
 
-## 🚀 Quick start
+- [Frontend Mentor - Coffeeroasters subscription site solution](#frontend-mentor---coffeeroasters-subscription-site-solution)
+  - [Table of contents](#table-of-contents)
+  - [Overview](#overview)
+    - [Screenshot](#screenshot)
+  - [My process](#my-process)
+    - [Built with](#built-with)
+    - [What I learned](#what-i-learned)
+    - [Continued development](#continued-development)
+  - [Author](#author)
 
-1.  **Create a Gatsby site.**
+## Overview
 
-    Use the Gatsby CLI ([install instructions](https://www.gatsbyjs.com/docs/tutorial/part-0/#gatsby-cli)) to create a new site, specifying the default starter.
+This is a design-to-code project to showcase products in a subscription-based e-commerce site. The featured functionality is a form containing your options when setting up the subscription, up until the point of starting a "checkout" process. For the the purposes of this project, the checkout will simply reset the options. Persistant state on refresh with Local Storage is provided.
 
-    ```shell
-    # create a new Gatsby site using the default starter
-    gatsby new my-default-starter https://github.com/gatsbyjs/gatsby-starter-default
-    ```
+Users should be able to:
 
-1.  **Start developing.**
+- View the optimal layout for each page depending on their device's screen size
+- See hover states for all interactive elements throughout the site
+- Make selections to create a coffee subscription and see an order summary modal of their choices
+  - Once the user selects the "Checkout" button on the modal, a confirmation toast appears, and the selections reset to the default values.
 
-    Navigate into your new site’s directory and start it up.
+### Screenshot
 
-    ```shell
-    cd my-default-starter/
-    gatsby develop
-    ```
+![](./screenshot.png)
 
-1.  **Open the source code and start editing!**
+Live Site URL: [https://coffeeroastersub.gatsbyjs.io](https://coffeeroastersub.gatsbyjs.io)
 
-    Your site is now running at `http://localhost:8000`!
+## My process
 
-    _Note: You'll also see a second link: _`http://localhost:8000/___graphql`_. This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby tutorial](https://www.gatsbyjs.com/tutorial/part-five/#introducing-graphiql)._
+### Built with
 
-    Open the `my-default-starter` directory in your code editor of choice and edit `src/pages/index.js`. Save your changes and the browser will update in real time!
+- [Chakra UI](https://www.chakra-ui.com) Components with Style Props
+- [Gatsby](https://gatsbyjs.com) - React framework with static querying powered by GraphQL
+- Mobile-first workflow
+- TypeScript
+- Jest Testing
 
-## 🚀 Quick start (Gatsby Cloud)
+### What I learned
 
-Deploy this starter with one click on [Gatsby Cloud](https://www.gatsbyjs.com/cloud/):
+This project comes with many firsts in using Chakra UI, Gatsby's Static Querying with GraphQL, TypeScript, and Jest.
 
-[<img src="https://www.gatsbyjs.com/deploynow.svg" alt="Deploy to Gatsby Cloud">](https://www.gatsbyjs.com/dashboard/deploynow?url=https://github.com/gatsbyjs/gatsby-starter-default)
+The static query feature made it easy to import assets, and use JSON files to hold iterated content like the collection options, steps to the subscription process, the options in the form, etc. This was great practice in working with GraphQL.
 
-## 🧐 What's inside?
+Chakra UI was chosen to experience using a component library that is accessible-first, and provided similar features compared to TailwindCSS in setting up styling to the site, complete with a theme config file to customize. As a lot of it's components and tools are not completely provided in the website documentation, it provided me a great opportunity to dive into the npm package to discover what it had to offer, finding valuable custom react hooks and better understanding of how to use the components and work with TypeScript.
 
-A quick look at the top-level files and directories you'll see in a Gatsby project.
+With the help of the Chakra UI and react packages with their typing, I was able to better understand the use of TypeScript.
 
-    .
-    ├── node_modules
-    ├── src
-    ├── .gitignore
-    ├── .prettierrc
-    ├── gatsby-browser.js
-    ├── gatsby-config.js
-    ├── gatsby-node.js
-    ├── gatsby-ssr.js
-    ├── LICENSE
-    ├── package-lock.json
-    ├── package.json
-    └── README.md
+The main thing I learned with TypeScript is it's use with Chakra in custom components, where I needed to provide values dynamically to Chakra props from a boolean function prop passed to the custom component. Since at the base, TypeScript will throw an error if a value passed to a Chakra Prop can become `false` this means that sometimes you have to provide explicit typing to a boolean prop to show that it will never be `false`. In the cases provided to the `SubscriptionDetails` component, where if it is being rendered in the subscription page, then the component will have a different background color and added padding at certain breakpoints, I use a short circuit operation with the logical AND in the the respective Chakra props. The operation begins with the boolean prop, which will be either `true` or `undefined` which TypeScript will accept in this context. If true, then the value on the right side will be compiled. Otherwise, `undefined` will be returned and will not compile the prop, or not compile the breakpoint if an object is used.
 
-1.  **`/node_modules`**: This directory contains all of the modules of code that your project depends on (npm packages) are automatically installed.
+```javascript
+<Stack paddingY={onSubscribePage && '88px'}>
+```
 
-2.  **`/src`**: This directory will contain all of the code related to what you will see on the front-end of your site (what you see in the browser) such as your site header or a page template. `src` is a convention for “source code”.
+You use an object in a Chakra prop if you were defining values at different brekapoints. If I were to provide a check for one or more breakpoints, you can also use a spread operation by putting the short circuit operation in parentheses, and the right side can still be an object which if returned will spread into the main object.
 
-3.  **`.gitignore`**: This file tells git which files it should not track / not maintain a version history for.
+```javascript
+<Stack paddingX={{ ...(onSubscribePage && { base: '24px', md: '42px' }), xl: '88px' }}>
+```
 
-4.  **`.prettierrc`**: This is a configuration file for [Prettier](https://prettier.io/). Prettier is a tool to help keep the formatting of your code consistent.
+Jest is still a work-in-process with understanding. This project provided the ability to understand fundamental techniques in testing current rendering of components, and testing click actions with states such as with the `Layout` component. Further learning and use of Jest is planned for future project with complex functionality.
 
-5.  **`gatsby-browser.js`**: This file is where Gatsby expects to find any usage of the [Gatsby browser APIs](https://www.gatsbyjs.com/docs/browser-apis/) (if any). These allow customization/extension of default Gatsby settings affecting the browser.
+### Continued development
 
-6.  **`gatsby-config.js`**: This is the main configuration file for a Gatsby site. This is where you can specify information about your site (metadata) like the site title and description, which Gatsby plugins you’d like to include, etc. (Check out the [config docs](https://www.gatsbyjs.com/docs/gatsby-config/) for more detail).
+This project is the bases for continued use and learning of TypeScript in React projects.
 
-7.  **`gatsby-node.js`**: This file is where Gatsby expects to find any usage of the [Gatsby Node APIs](https://www.gatsbyjs.com/docs/node-apis/) (if any). These allow customization/extension of default Gatsby settings affecting pieces of the site build process.
+I also highly favor the use of Chakra UI over Tailwind because of the Accessibility focus and hope to also be able to contribute to the documentation to help make more of the components available to the community in understanding their use.
 
-8.  **`gatsby-ssr.js`**: This file is where Gatsby expects to find any usage of the [Gatsby server-side rendering APIs](https://www.gatsbyjs.com/docs/ssr-apis/) (if any). These allow customization of default Gatsby settings affecting server-side rendering.
+Jest will be a standard addition for future projects.
 
-9.  **`LICENSE`**: This Gatsby starter is licensed under the 0BSD license. This means that you can see this file as a placeholder and replace it with your own license.
+## Author
 
-10. **`package-lock.json`** (See `package.json` below, first). This is an automatically generated file based on the exact versions of your npm dependencies that were installed for your project. **(You won’t change this file directly).**
-
-11. **`package.json`**: A manifest file for Node.js projects, which includes things like metadata (the project’s name, author, etc). This manifest is how npm knows which packages to install for your project.
-
-12. **`README.md`**: A text file containing useful reference information about your project.
-
-## 🎓 Learning Gatsby
-
-Looking for more guidance? Full documentation for Gatsby lives [on the website](https://www.gatsbyjs.com/). Here are some places to start:
-
-- **For most developers, we recommend starting with our [in-depth tutorial for creating a site with Gatsby](https://www.gatsbyjs.com/tutorial/).** It starts with zero assumptions about your level of ability and walks through every step of the process.
-
-- **To dive straight into code samples, head [to our documentation](https://www.gatsbyjs.com/docs/).** In particular, check out the _Guides_, _API Reference_, and _Advanced Tutorials_ sections in the sidebar.
-
-## 💫 Deploy
-
-[Build, Deploy, and Host On The Only Cloud Built For Gatsby](https://www.gatsbyjs.com/cloud/)
-
-Gatsby Cloud is an end-to-end cloud platform specifically built for the Gatsby framework that combines a modern developer experience with an optimized, global edge network.
-
-<!-- AUTO-GENERATED-CONTENT:END -->
+- Website - [Tyler Pfledderer](https://tylerpweb.dev)
